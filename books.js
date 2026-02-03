@@ -1,6 +1,6 @@
 //https://cfath1991.github.io/aufziehn-frei/books.html
 
-const isPublished = false
+const isPublished = true
 
 const FONT = "helvetica"
 
