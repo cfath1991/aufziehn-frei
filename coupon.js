@@ -1,7 +1,5 @@
 const isPublished = true
 
-const testURL = "http://pfgenerator.classic-brass.de/AufziehnFrei/aufziehn_Coupon.html?data=%7B%22history%22%3A%5B%5D%2C%22valid_till%22%3A%222027-01-18T18%3A05%3A54.315Z%22%2C%22_id%22%3A%22f675b5d1-acc3-44d9-b2f8-00c6d37df05f%22%2C%22_owner%22%3A%226c76f11b-095f-405d-a85e-109945f4d566%22%2C%22_createdDate%22%3A%222026-01-17T18%3A05%3A54.791Z%22%2C%22usable_by%22%3A%5B%2261827d08-6f1c-4212-a551-53503bcbacbd%22%5D%2C%22valid_from_formatted%22%3A%2217.01.2026%22%2C%22_updatedDate%22%3A%222026-01-17T18%3A05%3A54.791Z%22%2C%22valid_till_formatted%22%3A%2218.01.2027%22%2C%22amount%22%3A15%2C%22code%22%3A%22WBXN-XVU1%22%2C%22valid_from%22%3A%222026-01-17T18%3A05%3A54.315Z%22%2C%22max_use_count%22%3A1%2C%22type%22%3A%22amount%22%2C%22company_details%22%3A%7B%22website%22%3A%22www.aufziehn-frei.de%22%2C%22name%22%3A%22Flugschule%20Aufzieh%27n%20frei!%22%2C%22tel%22%3A%220155%20%2F%2065%2080%2070%2055%22%2C%22logo_bunt%22%3A%22https%3A%2F%2Fstatic.wixstatic.com%2Fmedia%2F6c76f1_3f5973ff4f18417ba7868fe0943242ec~mv2.png%22%2C%22email%22%3A%22FS-Emailadresse%40web.de%22%2C%22_id%22%3A%2279c8447f-6f91-4560-8587-ff9bcbf7940c%22%2C%22_owner%22%3A%226c76f11b-095f-405d-a85e-109945f4d566%22%2C%22_createdDate%22%3A%222026-01-15T17%3A51%3A42.240Z%22%2C%22steuernummer%22%3A%22000%200000%200000%200000%22%2C%22bic%22%3A%22XX%20XXXX%20XXX%22%2C%22plz_ort%22%3A%2283674%20Gaißach%22%2C%22_updatedDate%22%3A%222026-01-17T18%3A01%3A23.467Z%22%2C%22unterzeichnetVon%22%3A%22Christian%20Fath%20%26%20Tobias%20Weller%22%2C%22steuer_id%22%3A%22000%2000%2000%20000%22%2C%22strasse%22%3A%22Anger%201%22%2C%22iban%22%3A%22XX00%200000%200000%200000%200000%22%7D%7D"
-
 const imgBackground = "https://static.wixstatic.com/media/6c76f1_c61fed2f744342a183bc11d6a34c88a5~mv2.jpg"
 const FONT_FAMILY = "helvetica"
 
@@ -18,8 +16,6 @@ $(document).ready(function () {
 function decodeURL() {
     console.log("decodeUrl...");
     let qUrl = window.location.search
-
-    if (!isPublished) { qUrl = testURL }
 
     let result = qUrl.split("?data=")[1]
     console.log(result)
