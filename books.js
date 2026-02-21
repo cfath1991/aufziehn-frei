@@ -6,6 +6,7 @@ const FONT = "helvetica"
 const errorImg = "data:image/png;base64,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"
 
 const testURL = ""
+    
 const text = document.getElementById("text")
 const btn = document.getElementById("btn")
 const gifWait = document.getElementById("gifWait")
@@ -503,8 +504,8 @@ async function addBelege() {
 
                     //TODO: Timer falls nicht geladen
                     doc.addPage();
-                    doc.text("Beleg: " + beleg.nr + " (" + (j + 1) + "/" + beleg.imgs.length + ")", centerLine, 10, "center")
-                    await doc.addImage(imgUrl, fileExt, xOffset, 10, 100, 100);
+                    doc.text("Beleg: " + beleg.nr + " (" + (j + 1) + "/" + beleg.imgs.length + ")", centerLine, 8, "center")
+                    await doc.addImage(imgUrl, fileExt, xOffset, xOffset, 100, 100);
                 }
             }
 
@@ -521,8 +522,8 @@ async function addBelege() {
                     const dataUrl = dataurls[k];
                     //TODO: Timer falls nicht geladen
                     doc.addPage();
-                    doc.text("Beleg: " + beleg.nr + " (" + (j + 1) + "/" + beleg.pdfs.length + ")", centerLine, 10, "center")
-                    await doc.addImage(dataUrl, "JPEG", 0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height);
+                    doc.text("Beleg: " + beleg.nr + " (" + (j + 1) + "/" + beleg.pdfs.length + ")", centerLine, 8, "center")
+                    await doc.addImage(dataUrl, "JPEG", 10, 10, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10);
                 }
             }
         }
