@@ -628,7 +628,7 @@ function getBilanz() {
 btn.addEventListener('click', () => {
     console.log(text.value);
 
-    if (text.value.trim().length) {
+    if (text.value.trim().length === 0) {
         console.warn("No text passed");
         text.style.borderColor = "red"
         return
