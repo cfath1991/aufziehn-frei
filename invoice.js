@@ -144,7 +144,7 @@ function createPdf() {
 
 
     let x_bezeichnung = xOffset
-    let x_anzahl = 102
+    let x_anzahl = 110
     let x_preis = 144
     let x_ust = 166
     let x_betrag = xOffsetRight
