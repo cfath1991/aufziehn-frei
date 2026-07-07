@@ -63,6 +63,8 @@ $(document).ready(function () {
 function startProgram() {
     console.log("startProgram...");
 
+    text.value = localStorage.getItem("myLocalStorage");
+    
     decodeURL()
     closeBilanz()
     bilanz = getBilanz()
