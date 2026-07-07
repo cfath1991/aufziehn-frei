@@ -63,7 +63,7 @@ $(document).ready(function () {
 function startProgram() {
     console.log("startProgram...");
 
-    text.value = localStorage.getItem("myLocalStorage");
+    text.value = localStorage.getItem("myLocalStorage") || "String einfügen"
     
     decodeURL()
     closeBilanz()
