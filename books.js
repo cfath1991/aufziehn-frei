@@ -78,6 +78,7 @@ function decodeURL() {
     if (text.value === "local") {
         console.log("...try to fetch local storage...")
         qUrl = localStorage.getItem("myLocalStorage");
+        console.log(qUrl);
     }
 
     let result = qUrl.split("?data=")[1]
