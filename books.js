@@ -151,7 +151,6 @@ function getKonto(skr04) {
         }
     }
     console.error("ERROR: No konto found for skr04 ", skr04);
-
 }
 
 function getSaldo(konto) {
@@ -243,7 +242,7 @@ async function createPdf() {
     await addJournal()
     await addBilanz()
     await addGuV()
-    
+
     for (let i = 0; i < konten.length; i++) {
         if (konten[i].name != "GuV") {
             addTKonto(konten[i])
@@ -255,7 +254,7 @@ async function createPdf() {
 
     await doc.save("buchhaltung.pdf", { returnPromise: true })
     setTimeout(() => {
-        imgWarten.src = "https://static.wixstatic.com/media/42c988_ec7053df7f164f49828d1c6051095c51~mv2.png"
+        //imgWarten.src = "https://static.wixstatic.com/media/42c988_ec7053df7f164f49828d1c6051095c51~mv2.png"
         window.close()
     }, 5000);
 }
@@ -295,11 +294,15 @@ function addJournal() {
 
     for (let i = 0; i < journal.length; i++) {
         const e = journal[i];
-        const beleg = e.beleg
 
-        if (beleg) {
-            belege.push(beleg)
-        }
+        let beleg_nr = ""
+
+        e.belege?.forEach(beleg => {
+            if (beleg) {
+                belege.push(beleg)
+                beleg_nr += beleg.nr + " "
+            }
+        })
 
         const fS = 7
         y += 7
@@ -307,7 +310,7 @@ function addJournal() {
         lineArray.push(
             new Text(i + "", fS, "normal", null, null, column[0], y), // Lfd.Nr
             new Text(e.datum_formatted, fS, "normal", null, null, column[1], y), //Datum
-            new Text(beleg ? beleg.nr : "", fS, "normal", null, null, column[2], y), //Belegnr
+            new Text(beleg_nr, fS, "normal", null, null, column[2], y), //Belegnr
             new Text(e.soll_konto.skr04, fS, "normal", null, null, column[3], y), //Soll
             new Text(e.haben_konto.skr04, fS, "normal", null, null, column[4], y), //Haben
             new Text(wrapText(e.buchungssatz, fS, 190), fS, "normal", null, null, column[5], y), //Buchungssatz
@@ -487,38 +490,16 @@ async function addBelege() {
     for (let i = 0; i < belege.length; i++) {
         const beleg = belege[i];
         console.log("beleg", beleg);
-        
+
         textProgress.innerHTML = "Belege werden geladen (" + (i + 1) + "/" + belege.length + ")"
         if (errorCount > 0) {
             textProgress.innerHTML = "Belege werden geladen (" + (i + 1) + "/" + belege.length + ")" + "\n" + " - Fehlerhafter Download: " + errorCount
         }
 
         try {
-            if (beleg.imgs && beleg.imgs.length > 0) {
 
-                for (let j = 0; j < beleg.imgs.length; j++) {
-                    const r = extractUrl(beleg.imgs[j].src, "img")
-                    const imgUrl = r.imgUrl
-                    const fileExt = r.fileExt
-
-                    console.log("imgUrl", imgUrl);
-
-                    //TODO: Timer falls nicht geladen
-                    doc.addPage();
-                    doc.setFontSize(8)
-                    doc.text("Beleg: " + beleg.nr + " (" + (j + 1) + "/" + beleg.imgs.length + ")", xOffset, 8, "left")
-                    doc.text("Buchungsdatum: " + beleg.date, xOffsetRight, 8, "right", )
-                    await doc.addImage(imgUrl, fileExt, xOffset, xOffset, 100, 100);
-                }
-            }
-
-        } catch (error) {
-            console.error(error);
-        }
-
-        if (beleg.pdfs && beleg.pdfs.length > 0) {
-            for (let j = 0; j < beleg.pdfs.length; j++) {
-                const pdfUrl = await extractUrl(beleg.pdfs[j].src, "pdf")
+            if (beleg.type.toLowerCase() === "pdf") {
+                const pdfUrl = await extractUrl(beleg.url, "pdf")
                 const dataurls = await getCanvasDataUrl(pdfUrl)
 
                 for (let k = 0; k < dataurls.length; k++) {
@@ -530,8 +511,25 @@ async function addBelege() {
                     doc.text("Buchungsdatum: " + beleg.date, xOffsetRight, 8, "right")
                     await doc.addImage(dataUrl, "JPEG", 10, 10, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10);
                 }
+            } else {
+                const r = extractUrl(beleg.url, "img")
+                const imgUrl = r.imgUrl
+                const fileExt = r.fileExt
+
+                console.log("imgUrl", imgUrl);
+
+                //TODO: Timer falls nicht geladen
+                doc.addPage();
+                doc.setFontSize(8)
+                doc.text("Beleg: " + beleg.nr, xOffset, 8, "left")
+                doc.text("Buchungsdatum: " + beleg.date, xOffsetRight, 8, "right",)
+                await doc.addImage(imgUrl, fileExt, xOffset, xOffset, 100, 100);
             }
+        } catch (error) {
+            console.error(error);
+            errorCount++
         }
+
     }
 }
 
@@ -603,7 +601,6 @@ function getBilanz() {
 
     for (let i = 0; i < konten.length; i++) {
         const konto = konten[i];
-        //console.log("konto", konto);
 
         if (!konto.saldo) {
             continue;
