@@ -29,6 +29,7 @@ const last_line = doc.internal.pageSize.height - 18
 
 let errorCount
 
+let qUrl
 let UrlData
 var imgWarten = document.getElementById("imgWarten")
 let lineSitelength = "__________________________________________________________________________________________________________"
@@ -53,7 +54,7 @@ class Konto {
 }
 
 $(document).ready(function () {
-    console.log("Version: 08.Juli.2026 - 08:52")
+    console.log("Version: 07.Juli.2026 - 13:28")
     console.log("...document loaded");
     
     let string = localStorage.getItem("myLocalStorage")
@@ -65,7 +66,7 @@ $(document).ready(function () {
 function startProgram() {
     console.log("startProgram...");
 
-    let qUrl = text.value
+    qUrl = text.value
     if (!isPublished) { qUrl = testURL }
 
     decodeURL()
