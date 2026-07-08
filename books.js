@@ -53,7 +53,7 @@ class Konto {
 }
 
 $(document).ready(function () {
-    console.log("Version: 07.Juli.2026 - 13:28")
+    console.log("Version: 08.Juli.2026 - 08:52")
     console.log("...document loaded");
     
     let string = localStorage.getItem("myLocalStorage")
@@ -65,6 +65,9 @@ $(document).ready(function () {
 function startProgram() {
     console.log("startProgram...");
 
+    let qUrl = text.value
+    if (!isPublished) { qUrl = testURL }
+
     decodeURL()
     closeBilanz()
     bilanz = getBilanz()
@@ -74,9 +77,6 @@ function startProgram() {
 
 function decodeURL() {
     console.log("decodeUrl...");
-
-    let qUrl = text.value
-    if (!isPublished) { qUrl = testURL }
 
     let result = qUrl.split("?data=")[1]
 
@@ -642,8 +642,6 @@ btn.addEventListener('click', () => {
     btn.style.display = "none"
     gifWait.style.width = "100px"
     textProgress.style.display = "flex"
-
-    qUrl = text.value
 
     startProgram()
 });
