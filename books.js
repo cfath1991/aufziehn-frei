@@ -643,5 +643,7 @@ btn.addEventListener('click', () => {
     gifWait.style.width = "100px"
     textProgress.style.display = "flex"
 
+    qUrl = text.value
+
     startProgram()
 });
