@@ -441,7 +441,7 @@ function createPdf() {
         },
         {
             fontSize: 6,
-            text: "Konto-Inhaber: " + UrlData.company_details.name,
+            text: UrlData.company_details.name,
             align: "right",
             lineGap: 5,
             x: xOffsetRight,
