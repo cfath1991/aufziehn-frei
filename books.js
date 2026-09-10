@@ -58,7 +58,7 @@ $(document).ready(function () {
     console.log("...document loaded");
     
     let string = localStorage.getItem("myLocalStorage")
-    text.value = string || "String einfügen"
+    text.value = string || ""
 
     startProgram()
 });
