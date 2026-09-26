@@ -433,7 +433,7 @@ function createPdf() {
         },
         {
             fontSize: 6,
-            text: "ID-Nr.:" + UrlData.company_details.steuer_id, // "IDNr. Stpfl.: 52 018 673 699",
+            text: "USt-ID: " + UrlData.company_details.steuer_id, // "IDNr. Stpfl.: 52 018 673 699",
             align: "center",
             lineGap: 3,
             x: xOffsetRight,
