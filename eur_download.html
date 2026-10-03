@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>createPdfInvoice</title>
+    <meta charset="utf-8">
+</head>
+
+<style>
+    .btn {
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        border: none;
+        border-radius: 12px;
+        cursor: default;
+        /* zeigt: keine Aktion */
+        box-shadow: 0 10px 20px rgba(79, 70, 229, 0.35);
+        transition: all 0.25s ease;
+    }
+
+    .btn:hover {
+        background: linear-gradient(135deg, #4338ca, #4f46e5);
+        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.45);
+    }
+
+    .btn:active {
+        transform: none;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        /* space between textarea and button */
+    }
+</style>
+
+<body style="margin: 60px;">
+    <h3 id="textProgress" style="display: none;">Bitte warten...</h3>
+    <img id="gifWait" src="https://static.wixstatic.com/media/6c76f1_997743ea51fd41128e499b23add3f466~mv2.gif"
+        alt="paraglider" style="visibility: visible;" width="0" height="=130">
+
+    <div class="container">
+        <textarea id="text" rows="16" cols="60" placeholder="Bitte kopiere den Data-String in dieses Feld"></textarea>
+        <button class="btn" id="btn">Download PDF</button>
+    </div>
+    <canvas id="canvas"></canvas>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/4.1.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    // This line "connects" the library to the name you're trying to use
+    window.jsPDF = window.jspdf.jsPDF;
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script>
+    // You MUST point the library to the worker script for it to function
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+</script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="./myText.js"></script>
+<script src="./myPdf.js"></script>
+<script src="./wixMedia.js"></script>
+<script src="./eur_download.js"></script>
+
+</html>
