@@ -1,5 +1,8 @@
 let textStatus = document.getElementById("textStatus")
 
+console.log("pilotsheet.js");
+
+
 window.addEventListener('message', (event) => {
     console.log("New message...", event)
 
