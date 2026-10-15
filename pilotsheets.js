@@ -1,6 +1,8 @@
 let textStatus = document.getElementById("textStatus")
 
 function run(){
+    console.log("run...");
+    
     textStatus.innerText = "Status: Loaded"
 }
 
