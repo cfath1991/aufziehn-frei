@@ -12,11 +12,13 @@ window.addEventListener('message', (event) => {
     textStatus.innerText = "Message: " + event.data
 
     if (event.origin !== 'https://aufziehn-frei.de') {
+        console.warn("ERROR: event.origin failure");
+        
         return;
     }
 
     console.log("Erfolgreich authentifiziert als aufziehn-frei")
-    
+
     // Im sessionStorage des GitHub-Domain-Ursprungs speichern:
     //sessionStorage.setItem('meineDaten', JSON.stringify(event.data));
 });
