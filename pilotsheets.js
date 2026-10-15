@@ -6,6 +6,8 @@ function run(){
     textStatus.innerText = "Status: Loaded"
 }
 
+run()
+
 window.addEventListener('message', (event) => {
     console.log("New message...", event)
 
@@ -25,5 +27,3 @@ window.addEventListener('message', (event) => {
     // Im sessionStorage des GitHub-Domain-Ursprungs speichern:
     //sessionStorage.setItem('meineDaten', JSON.stringify(event.data));
 });
-
-run()
