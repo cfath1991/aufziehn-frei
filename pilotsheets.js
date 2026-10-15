@@ -1,3 +1,9 @@
+let textStatus = document.getElementById("textStatus")
+
+function run(){
+    textStatus.innerText = "Status: Loaded"
+}
+
 window.addEventListener('message', (event) => {
     console.log("New message", event)
 
@@ -6,3 +12,5 @@ window.addEventListener('message', (event) => {
     // Im sessionStorage des GitHub-Domain-Ursprungs speichern:
     sessionStorage.setItem('meineDaten', JSON.stringify(event.data));
 });
+
+run()
