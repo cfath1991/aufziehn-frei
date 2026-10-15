@@ -1,13 +1,5 @@
 let textStatus = document.getElementById("textStatus")
 
-function run(){
-    console.log("run...");
-    
-    textStatus.innerText = "Status: Loaded"
-}
-
-run()
-
 window.addEventListener('message', (event) => {
     console.log("New message...", event)
 
