@@ -20,7 +20,9 @@ function run() {
         console.log("Erfolgreich authentifiziert als Aufziehn-frei")
 
         // Im sessionStorage des GitHub-Domain-Ursprungs speichern:
-        //sessionStorage.setItem('meineDaten', JSON.stringify(event.data));
+        const sheets = sessionStorage.getItem('sheets');
+        console.log(sheets);
+        
     });
 }
 
