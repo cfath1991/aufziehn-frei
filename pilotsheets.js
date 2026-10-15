@@ -3,7 +3,7 @@ let textStatus = document.getElementById("textStatus")
 window.addEventListener('message', (event) => {
     console.log("New message...", event)
 
-    textStatus.innerText = "Message: " + event.data
+    //textStatus.innerText = "Message: " + event.data
 
     console.log("event.origin check:" + event.origin);
     
