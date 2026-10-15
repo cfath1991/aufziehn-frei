@@ -12,7 +12,7 @@ function run() {
 
         console.log("origin check: " + origin);
 
-        if (origin != "aufziehn-frei.de") {
+        if (origin != "www.aufziehn-frei.de") {
             console.warn("ERROR: event.origin failure");
             return
         }
