@@ -1,8 +1,6 @@
 let textStatus = document.getElementById("textStatus")
 
 function run(){
-    console.log("TUN!");
-    
     textStatus.innerText = "Status: Loaded"
 }
 
@@ -16,6 +14,9 @@ window.addEventListener('message', (event) => {
     }
 
     console.log("Erfolgreich authentifiziert als aufziehn-frei")
+
+    // Im sessionStorage des GitHub-Domain-Ursprungs speichern:
+    //sessionStorage.setItem('meineDaten', JSON.stringify(event.data));
 });
 
 run()

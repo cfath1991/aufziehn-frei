@@ -1,7 +1,7 @@
 
 
 function extractUrl(wixUrl, type){
-    console.log("extractUrl...", wixUrl, type);
+    console.log("extractUrl...");
 
     if(type.toLowerCase() === "pdf"){
         return extractPdfUrl(wixUrl)

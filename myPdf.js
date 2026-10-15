@@ -14,14 +14,14 @@ class Text {
 function renderPdf(lineArray) {
     console.log("renderPdf...", lineArray);
 
-    let y = first_line
-    for (let i = 0; i < lineArray.length; i++) {
+    try {
+        let y = first_line
+        for (let i = 0; i < lineArray.length; i++) {
 
-        try {
             if (!lineArray[i]) {
                 continue;
             }
-            console.log(lineArray[i])
+            //console.log(lineArray[i])
             const element = lineArray[i];
 
             if (!element.text) {
@@ -59,9 +59,9 @@ function renderPdf(lineArray) {
 
                 doc.text(element.text, x, y, element.align)
             }
-
-        } catch (error) {
-            console.error(error);
         }
+
+    } catch (error) {
+        console.error(error);
     }
 }
