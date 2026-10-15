@@ -8,7 +8,7 @@ window.addEventListener('message', (event) => {
     console.log("event.origin check:" + event.origin);
     
 
-    if (event.origin !== 'https://aufziehn-frei.de') {
+    if (event.origin != 'https://aufziehn-frei.de') {
         console.warn("ERROR: event.origin failure");
         
         return;
