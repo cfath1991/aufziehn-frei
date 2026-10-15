@@ -1,22 +1,27 @@
 let textStatus = document.getElementById("textStatus")
 
-console.log("pilotsheet.js");
+function run() {
+    console.log("run...");
 
+    window.addEventListener('message', (event) => {
+        console.log("New message...", event)
 
-window.addEventListener('message', (event) => {
-    console.log("New message...", event)
+        //textStatus.innerText = "Message: " + event.data
 
-    //textStatus.innerText = "Message: " + event.data
+        const origin = event.origin.replace("https://", "")
 
-    console.log("event.origin check: " + event.origin);
-    
-    if (event.origin.replace("https://","") != "aufziehn-frei.de") {
-        console.warn("ERROR: event.origin failure");
-        return
-    }
+        console.log("event.origin check: " + origin);
 
-    console.log("Erfolgreich authentifiziert als Aufziehn-frei")
+        if (origin != "aufziehn-frei.de") {
+            console.warn("ERROR: event.origin failure");
+            return
+        }
 
-    // Im sessionStorage des GitHub-Domain-Ursprungs speichern:
-    //sessionStorage.setItem('meineDaten', JSON.stringify(event.data));
-});
+        console.log("Erfolgreich authentifiziert als Aufziehn-frei")
+
+        // Im sessionStorage des GitHub-Domain-Ursprungs speichern:
+        //sessionStorage.setItem('meineDaten', JSON.stringify(event.data));
+    });
+}
+
+run()
