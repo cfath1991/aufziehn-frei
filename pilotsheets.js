@@ -13,6 +13,8 @@ window.addEventListener('message', (event) => {
         return;
     }
 
+    console.log("Erfolgreich authentifiziert als aufziehn-frei")
+
     // Im sessionStorage des GitHub-Domain-Ursprungs speichern:
     //sessionStorage.setItem('meineDaten', JSON.stringify(event.data));
 });
