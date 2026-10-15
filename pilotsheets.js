@@ -5,16 +5,14 @@ window.addEventListener('message', (event) => {
 
     //textStatus.innerText = "Message: " + event.data
 
-    console.log("event.origin check:" + event.origin);
+    console.log("event.origin check: " + event.origin);
     
-
-    if (event.origin != 'https://aufziehn-frei.de') {
+    if (event.origin.replace("https://","") != "aufziehn-frei.de") {
         console.warn("ERROR: event.origin failure");
-        
-        return;
+        return
     }
 
-    console.log("Erfolgreich authentifiziert als aufziehn-frei")
+    console.log("Erfolgreich authentifiziert als Aufziehn-frei")
 
     // Im sessionStorage des GitHub-Domain-Ursprungs speichern:
     //sessionStorage.setItem('meineDaten', JSON.stringify(event.data));
