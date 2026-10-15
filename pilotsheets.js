@@ -10,7 +10,7 @@ function run() {
 
         const origin = event.origin.replace("https://", "")
 
-        console.log("event.origin check: " + origin);
+        console.log("origin check: " + origin);
 
         if (origin != "aufziehn-frei.de") {
             console.warn("ERROR: event.origin failure");
