@@ -11,6 +11,9 @@ window.addEventListener('message', (event) => {
 
     textStatus.innerText = "Message: " + event.data
 
+    console.log("event.origin check:" + event.origin);
+    
+
     if (event.origin !== 'https://aufziehn-frei.de') {
         console.warn("ERROR: event.origin failure");
         
