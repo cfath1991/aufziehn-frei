@@ -7,7 +7,7 @@ function run(){
 window.addEventListener('message', (event) => {
     console.log("New message", event)
 
-    textStatus.innerText = "Nachricht: " + event.toString()
+    textStatus.innerText = "Nachricht: " + event.data
 
     if (event.origin !== 'https://meine-wix-domain.de') return;
 
