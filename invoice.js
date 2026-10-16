@@ -66,7 +66,7 @@ function createPdf() {
         },
         {
             fontSize: 8,
-            text: "Tel. " + UrlData.company_details.tel,
+            text: "Tel. " + UrlData.company_details.tel.replace("\n", " | "),
             align: "right",
             lineGap: 4,
             x: xOffsetRight,
