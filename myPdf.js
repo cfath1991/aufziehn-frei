@@ -1,10 +1,11 @@
+let FONT = "Arial"
 
 class Text {
     constructor(text, fontSize, fontWeight, align, lineGap, x, y) {
-        this.text = text;
-        this.fontSize = fontSize;
-        this.fontWeight = fontWeight,
-            this.align = align;
+        this.text = text || "undefined";
+        this.fontSize = fontSize || 12;
+        this.fontWeight = fontWeight || "bold";
+        this.align = align;
         this.lineGap = lineGap;
         this.x = x;
         this.y = y;

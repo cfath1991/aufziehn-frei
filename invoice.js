@@ -74,7 +74,7 @@ function createPdf() {
         },
         {
             fontSize: 8,
-            text: UrlData.company_details.email,
+            text: "Email: " + UrlData.company_details.email,
             align: "right",
             lineGap: 4,
             x: xOffsetRight,
@@ -499,8 +499,6 @@ function wrapText(text, fontsize, maxWidth) {
     console.log("maxWidth: " + maxWidth);
 
     try {
-
-
         let breakLines = text.split("\n")
         let words
         let wrappedText = ""
