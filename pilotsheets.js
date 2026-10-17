@@ -16,6 +16,7 @@ function run() {
         }
 
         console.log("...erfolgreich authentifiziert")
+        textStatus.text = "...erfolgreich authentifiziert"
 
         data = JSON.parse(event.data)
         createPdf(data)
@@ -24,6 +25,7 @@ function run() {
 
 function createPdf(data) {
     console.log("[createPdf...]", data);
+    textStatus.text = "Erstelle PDF..."
 
     let pdf = new myPDF("a4", "l")
     pdf.addText(data.tour.title, 25, "center", "bold")
