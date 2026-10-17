@@ -26,8 +26,8 @@ function createPdf(data) {
     console.log("[createPdf...]", data);
 
     let pdf = new myPDF("a4", "l")
-    pdf.addText(data.temp_tour.title, 25, "center", "bold")
-    pdf.addText(data.temp_tour.dates_formatted, 18, "center")
+    pdf.addText(data.tour.title, 25, "center", "bold")
+    pdf.addText(data.tour.dates_formatted, 18, "center")
 
     const table = pdf.table(6, null, null, null, null, [pdf.offsets.x, 40, 72, 105, 140, 180])
     console.log("table", table);
