@@ -3,7 +3,7 @@ const textStatus = document.getElementById("textStatus")
 let data
 
 function run() {
-    console.log("run...");
+    console.log("[run...]");
 
     window.addEventListener('message', (event) => {
         console.log("New message...", event)
@@ -23,7 +23,7 @@ function run() {
 }
 
 function createPdf(data) {
-    console.log("createPdf...", data);
+    console.log("[createPdf...]", data);
 
     let pdf = new myPDF("a4", "l")
     pdf.addText(data.temp_tour.title, 25, "center", "bold")
