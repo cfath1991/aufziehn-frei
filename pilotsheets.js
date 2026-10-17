@@ -53,9 +53,9 @@ function createPdf(data) {
         pdf.addText(person.first_name, null, null, null, null, null, table[0].cell_x)
         pdf.addText(person.last_name, null, null, null, null, null, table[1].cell_x)
         pdf.addText(person.birthday_formatted, null, null, null, null, null, table[2].cell_x)
-        pdf.addText(sheet.glider, null, null, null, null, null, table[3].cell_x)
-        pdf.addText(sheet.total_flights, null, null, null, null, null, table[4].cell_x)
-        pdf.addText(sheet.health_info, null, null, null, null, null, table[5].cell_x)
+        pdf.addText(sheet?.glider || "", null, null, null, null, null, table[3].cell_x)
+        pdf.addText(sheet?.total_flights || "", null, null, null, null, null, table[4].cell_x)
+        pdf.addText(sheet?.health_info || "", null, null, null, null, null, table[5].cell_x)
         pdf.releaseY()
     }
     pdf.addNewPage()
