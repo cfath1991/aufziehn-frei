@@ -44,18 +44,18 @@ function createPdf(data) {
     pdf.setNextLine(null, 0.5)
     pdf.addLine()
 
-    for (let i = 0; i < 11; i++) {
-        const d = data[i];
-        console.log(d);
+    for (let i = 0; i < data.booked_by; i++) {
+        const person = data.booked_by[i].temp_contact;
+        const sheet = data.booked_by[i].temp_pilotsheet;
 
         pdf.setNextLine()
         pdf.blockY()
-        pdf.addText("Name", null, null, null, null, null, table[0].cell_x)
-        pdf.addText("Nachname", null, null, null, null, null, table[1].cell_x)
-        pdf.addText("Geburtstag", null, null, null, null, null, table[2].cell_x)
-        pdf.addText("Gleitschirm", null, null, null, null, null, table[3].cell_x)
-        pdf.addText("Flugerfahrung", null, null, null, null, null, table[4].cell_x)
-        pdf.addText("Sonstiges", null, null, null, null, null, table[5].cell_x)
+        pdf.addText(person.first_name, null, null, null, null, null, table[0].cell_x)
+        pdf.addText(person.last_name, null, null, null, null, null, table[1].cell_x)
+        pdf.addText(person.birthday_formatted, null, null, null, null, null, table[2].cell_x)
+        pdf.addText(sheet.glider, null, null, null, null, null, table[3].cell_x)
+        pdf.addText(sheet.total_flights, null, null, null, null, null, table[4].cell_x)
+        pdf.addText(sheet.health_info, null, null, null, null, null, table[5].cell_x)
         pdf.releaseY()
     }
     pdf.addNewPage()
