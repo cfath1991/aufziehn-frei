@@ -31,7 +31,7 @@ function renderPdf(lineArray) {
 
             if (element.text.startsWith("line")) {
                 const line = JSON.parse(element.text.replace("line=", ""))
-                doc.line(line.xS, line.yS, line.xE, line.yE);
+                doc.line(line.xS, line.yS, line.xE, line.yE)
                 continue
             }
 
