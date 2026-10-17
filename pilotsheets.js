@@ -60,7 +60,7 @@ function createPdf(data) {
     }
     pdf.addNewPage()
     pdf.addImage("https://i.ibb.co/SDfYwZ5H/Aufziehn-Frei-Icons.png", "png")
-    pdf.download("testname")
+    pdf.download("Teilnehmer " + data.tour.title || "Teilnehmerliste")
 }
 
 
