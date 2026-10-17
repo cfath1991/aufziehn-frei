@@ -44,7 +44,7 @@ function createPdf(data) {
     pdf.setNextLine(null, 0.5)
     pdf.addLine()
 
-    for (let i = 0; i < data.booked_by; i++) {
+    for (let i = 0; i < data.booked_by.length; i++) {
         const person = data.booked_by[i].temp_contact;
         const sheet = data.booked_by[i].temp_pilotsheet;
 
