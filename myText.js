@@ -1,9 +1,23 @@
+let canvas = document.createElement("canvas");
+let context = canvas.getContext("2d");
 
-function wrapText(text, fontsize, maxWidth, fontFamily) {
-    console.log("[wrapText...]", text, fontsize, maxWidth);
+function wrapText(text, fontsize, maxWidth, fontFamily, fontWeight) {
+    console.log("[wrapText...]", maxWidth);
+
+    if(!fontWeight){
+        fontWeight = "normal"
+    }
 
     if(!fontFamily){
         fontFamily = "Arial"
+    }
+
+    if(!fontsize){
+        fontsize = 10
+    }
+
+    if(!maxWidth){
+        maxWidth = 150
     }
     
     try {
@@ -24,7 +38,7 @@ function wrapText(text, fontsize, maxWidth, fontFamily) {
                     tempLine = tempLine + " " + word
                 }
 
-                let textWidth = getTextWidth(tempLine, fontsize)
+                let textWidth = getTextWidth(tempLine, fontsize, fontFamily, fontWeight)
 
                 if (textWidth >= maxWidth) {
                     wrappedText += "\n" + tempLine
@@ -42,12 +56,10 @@ function wrapText(text, fontsize, maxWidth, fontFamily) {
     }
 }
 
-function getTextWidth(inputText, fontSize, fontFamily) {
+function getTextWidth(inputText, fontSize, fontFamily, fontWeight) {
     //console.log("getTextWidth...");
-    let font = fontSize + "px " + fontFamily;
+    let font = fontWeight + " " + fontSize + "px " + fontFamily;
 
-    let canvas = document.createElement("canvas");
-    let context = canvas.getContext("2d");
     context.font = font;
     let width = context.measureText(inputText).width;
     let formattedWidth = Math.ceil(width);

@@ -5,7 +5,7 @@ class myPDF {
   constructor(format, orientation) {
     this.jsPdf = new jsPDF({
       orientation: orientation,
-      unit: 'mm',
+      unit: 'pt', //'mm',
       format: format.toLowerCase() + "",
       putOnlyUsedFonts: true
     })
@@ -28,7 +28,7 @@ class myPDF {
   }
 
   addText(text, fontSize, align, fontWeight, fontFamily, lineGap, x, y, max_length) {
-    console.log("[myPdfMaker.js] addText()", x);
+    //console.log("[myPdfMaker.js] addText()", x);
 
     if (!text) {
       return
@@ -59,7 +59,7 @@ class myPDF {
     }
     if (max_length) {
       try {
-        text = wrapText(text, fontSize, max_length, fontFamily)
+        text = wrapText(text, fontSize, max_length, fontFamily, fontWeight)
       } catch (error) {
         console.error(error);
       }
@@ -224,7 +224,6 @@ class myPDF {
     if (spacing && spacing.length != cell_count) {
       console.error("...spacing[] must be length of cell count");
       cell_count = spacing.length
-      spacing = undefined
     }
 
     const r = []
