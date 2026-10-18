@@ -44,8 +44,7 @@ function createPdf(data) {
     pdf.addText(data.tour.title, 25, "center", "bold")
     pdf.addText(data.tour.dates_formatted, 18, "center")
 
-    //const table = pdf.table(6, null, null, null, null, [pdf.offsets.left, 40, 72, 105, 140, 180])
-    const table = pdf.table(6, null, null, null, null, [30, 30, 30, 50, 50, 50])
+    const table = pdf.table(6, null, null, null, null, [pdf.offsets.left, 40, 72, 105, 140, 180])
     console.log("table", table);
 
     pdf.setNextLine()
