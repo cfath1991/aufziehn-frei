@@ -74,7 +74,7 @@ function createPdf(data) {
 
     let pdf = new myPDF("a4", "l")
     pdf.addText(data.tour.title, 25, "center", "bold")
-    pdf.addText(data.tour.dates_formatted, 18, "center")
+    pdf.addText(data.tour.dates_formatted, 12, "center")
 
     const table = pdf.getTable(
         ["Nr","Vorname","Nachname","Geb.","Telefonnr.","Gleitschirm","Flugerfahrung","Sonstiges"],
@@ -102,13 +102,13 @@ function createPdf(data) {
 
         pdf.setNextLine()
         pdf.blockY()
-        pdf.addText(i + "", 8, null, null, null, null, table[0].cell_x, null, table[0].cell_w * 0.9)
+        pdf.addText((i + 1 )+ "", 8, null, null, null, null, table[0].cell_x, null, table[0].cell_w * 0.9)
         pdf.addText(person.first_name, 8, null, null, null, null, table[1].cell_x, null, table[1].cell_w * 0.9)
         pdf.addText(person.last_name, 8, null, null, null, null, table[2].cell_x, null, table[2].cell_w * 0.9)
         pdf.addText(person.birthday_formatted || "", 8, null, null, null, null, table[3].cell_x, null, table[3].cell_w * 0.9)
         pdf.addText(person.phone1 || "", 8, null, null, null, null, table[4].cell_x, null, table[4].cell_w * 0.9)
         pdf.addText(sheet?.glider || "", 8, null, null, null, null, table[5].cell_x, null, table[5].cell_w * 0.9)
-        pdf.addText((sheet?.total_flights || "") + "\n(" + (sheet?.recent_flights || "") + ")", 8, null, null, null, null, table[6].cell_x, null, table[6].cell_w * 0.9)
+        pdf.addText((sheet?.total_flights || "") + "\n" + (sheet?.recent_flights || "") + "", 8, null, null, null, null, table[6].cell_x, null, table[6].cell_w * 0.9)
         pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[7].cell_x, null, table[7].cell_w * 0.9)
         pdf.releaseY()
     }
