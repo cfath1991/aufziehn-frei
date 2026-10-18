@@ -1,6 +1,6 @@
 const textStatus = document.getElementById("textStatus")
 
-const isPublished = true
+const isPublished = false
 
 const testData = {
     tour: {
@@ -13,6 +13,7 @@ const testData = {
                 first_name: "Testname",
                 last_name: "Test Nachname",
                 birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
             },
             temp_pilotsheet: {
 
@@ -27,6 +28,7 @@ const testData = {
                 first_name: "Testname",
                 last_name: "Test Nachname",
                 birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
             },
             temp_pilotsheet: {
 
@@ -74,17 +76,22 @@ function createPdf(data) {
     pdf.addText(data.tour.title, 25, "center", "bold")
     pdf.addText(data.tour.dates_formatted, 18, "center")
 
-    const table = pdf.table(10, null, null, null, null, [pdf.offsets.left, 108, 180, 250, 390, 480])
+    const table = pdf.getTable(
+        ["Nr","Vorname","Nachname","Geb.","Telefonnr.","Gleitschirm","Flugerfahrung","Sonstiges"],
+        [pdf.offsets.left, 70, 130, 200, 260, 330, 490, 560]
+    )
     console.log("table", table);
 
     pdf.setNextLine()
     pdf.blockY()
-    pdf.addText("Name", 9, null, "bold", null, null, table[0].cell_x)
-    pdf.addText("Nachname", 9, null, "bold", null, null, table[1].cell_x)
-    pdf.addText("Geburtstag", 9, null, "bold", null, null, table[2].cell_x)
-    pdf.addText("Gleitschirm", 9, null, "bold", null, null, table[3].cell_x)
-    pdf.addText("Flugerfahrung", 9, null, "bold", null, null, table[4].cell_x)
-    pdf.addText("Sonstiges", 9, null, "bold", null, null, table[5].cell_x)
+    pdf.addText(table[0].name, 9, null, "bold", null, null, table[0].cell_x)
+    pdf.addText(table[1].name, 9, null, "bold", null, null, table[1].cell_x)
+    pdf.addText(table[2].name, 9, null, "bold", null, null, table[2].cell_x)
+    pdf.addText(table[3].name, 9, null, "bold", null, null, table[3].cell_x)
+    pdf.addText(table[4].name, 9, null, "bold", null, null, table[4].cell_x)
+    pdf.addText(table[5].name, 9, null, "bold", null, null, table[5].cell_x)
+    pdf.addText(table[6].name, 9, null, "bold", null, null, table[6].cell_x)
+    pdf.addText(table[7].name, 9, null, "bold", null, null, table[7].cell_x)
     pdf.releaseY()
     pdf.setNextLine(null, 0.5)
     pdf.addLine()
@@ -95,12 +102,14 @@ function createPdf(data) {
 
         pdf.setNextLine()
         pdf.blockY()
-        pdf.addText(person.first_name, 8, null, null, null, null, table[0].cell_x, null, table[0].cell_w * 0.9)
-        pdf.addText(person.last_name, 8, null, null, null, null, table[1].cell_x, null, table[1].cell_w * 0.9)
-        pdf.addText(person.birthday_formatted, 8, null, null, null, null, table[2].cell_x, null, table[2].cell_w * 0.9)
-        pdf.addText(sheet?.glider || "", 8, null, null, null, null, table[3].cell_x, null, table[3].cell_w * 0.9)
-        pdf.addText((sheet?.total_flights || "") + "\n(" + (sheet?.recent_flights || "") + ")", 8, null, null, null, null, table[4].cell_x, null, table[4].cell_w * 0.9)
-        pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[5].cell_x, null, table[5].cell_w * 0.9)
+        pdf.addText(i + "", 8, null, null, null, null, table[0].cell_x, null, table[0].cell_w * 0.9)
+        pdf.addText(person.first_name, 8, null, null, null, null, table[1].cell_x, null, table[1].cell_w * 0.9)
+        pdf.addText(person.last_name, 8, null, null, null, null, table[2].cell_x, null, table[2].cell_w * 0.9)
+        pdf.addText(person.birthday_formatted || "", 8, null, null, null, null, table[3].cell_x, null, table[3].cell_w * 0.9)
+        pdf.addText(person.phone1 || "", 8, null, null, null, null, table[4].cell_x, null, table[4].cell_w * 0.9)
+        pdf.addText(sheet?.glider || "", 8, null, null, null, null, table[5].cell_x, null, table[5].cell_w * 0.9)
+        pdf.addText((sheet?.total_flights || "") + "\n(" + (sheet?.recent_flights || "") + ")", 8, null, null, null, null, table[6].cell_x, null, table[6].cell_w * 0.9)
+        pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[7].cell_x, null, table[7].cell_w * 0.9)
         pdf.releaseY()
     }
     //pdf.addNewPage()

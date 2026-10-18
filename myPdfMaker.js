@@ -34,7 +34,7 @@ class myPDF {
   }
 
   addText(text, fontSize, align, fontWeight, fontFamily, lineGap, x, y, max_length) {
-    console.log("[myPdfMaker.js] addText()", text);
+    //console.log("[myPdfMaker.js] addText()", text);
 
     if (!text) {
       return
@@ -88,9 +88,6 @@ class myPDF {
 
     const lineHeight = this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor;
     const textLines = text.split("\n").length
-
-    console.log("cache.linecount =", this.cache.linecount)
-    console.log("textlines =", textLines);
 
     if (this.isFixedY) {
       if(this.cache.linecount < textLines){
@@ -223,11 +220,12 @@ class myPDF {
     this.nextLine = Math.floor(value)
   }
 
-  table(cell_count, x, y, w, h, spacing) {
-    if (!cell_count) {
-      console.warn("...no cell_count provided");
-      cell_count = 2
+  getTable(name_array, spacing, x, y, w, h) {
+    if(!name_array || !Array.isArray(name_array)){
+      console.warn("[myPdfMaker] getTable() No name_array provided");
+      name_array = []
     }
+    const cell_count = name_array.length
     if (!x) {
       x = this.offsets.left
     }
@@ -241,17 +239,13 @@ class myPDF {
       h = this.h
     }
 
-    if (spacing && spacing.length != cell_count) {
-      console.error("...spacing[] must be length of cell count");
-      cell_count = spacing.length
-    }
-
     const r = []
 
     if (spacing) {
       for (let i = 0; i < spacing.length; i++) {
         const cell_w = (spacing[i + 1] - spacing[i]) || (w - spacing[i])
         r.push({
+          name: name_array[i] || "title",
           cell_x: spacing[i],
           cell_y: y,
           cell_w: cell_w
@@ -261,6 +255,7 @@ class myPDF {
       const cell_w = w / cell_count
       for (let i = 0; i < cell_count; i++) {
         r.push({
+          name: name_array[i] || "title",
           cell_x: x + i * cell_w,
           cell_y: y,
           cell_w: cell_w
