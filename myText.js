@@ -1,5 +1,7 @@
 
 function wrapText(text, fontsize, maxWidth) {
+    console.log("[wrapText...]", text, fontsize, maxWidth);
+    
     try {
         let breakLines = text.split("\n")
         let words

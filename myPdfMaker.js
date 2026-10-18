@@ -27,7 +27,7 @@ class myPDF {
     }
   }
 
-  addText(text, fontSize, align, fontWeight, fontFamily, lineGap, x, y) {
+  addText(text, fontSize, align, fontWeight, fontFamily, lineGap, x, y, max_length) {
     console.log("[myPdfMaker.js] addText()", x);
 
     if (!text) {
@@ -56,6 +56,13 @@ class myPDF {
     }
     if (y === 0) {
       y = this.offsets.top
+    }
+    if (max_length) {
+      try {
+        text = wrapText(text, fontSize, max_length)
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     this.dla.push({
@@ -217,44 +224,32 @@ class myPDF {
     if (spacing && spacing.length != cell_count) {
       console.error("...spacing[] must be length of cell count");
       cell_count = spacing.length
+      spacing = undefined
     }
+
+    const r = []
 
     if (spacing) {
-      /*
-      let r = []
       for (let i = 0; i < spacing.length; i++) {
-        let x = this.offsets.left
-        for (let j = 0; j < i; j++) {
-          x += spacing[j] || 30
-        }
+        const cell_w = (spacing[i + 1] - spacing[i]) || (w - spacing[i])
         r.push({
-          cell_x: x,
-          cell_y: y
+          cell_x: spacing[i],
+          cell_y: y,
+          cell_w: cell_w
         })
       }
-      return r
-      */
-      
-      return spacing.map((s)=>{
-        return {
-          cell_x: s,
-          cell_y: y
-        }
-      })
-      
+    } else {
+      const cell_w = w / cell_count
+      for (let i = 0; i < cell_count; i++) {
+        r.push({
+          cell_x: x + i * cell_w,
+          cell_y: y,
+          cell_w: cell_w
+        })
+      }
     }
 
-    const cell_w = w / cell_count
-    const array = []
-
-    for (let i = 0; i < cell_count; i++) {
-      array.push({
-        cell_x: x + i * cell_w,
-        cell_y: y
-      })
-    }
-
-    return array
+    return r
   }
 
   async download(name) {
