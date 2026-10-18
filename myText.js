@@ -1,6 +1,10 @@
 
-function wrapText(text, fontsize, maxWidth) {
+function wrapText(text, fontsize, maxWidth, fontFamily) {
     console.log("[wrapText...]", text, fontsize, maxWidth);
+
+    if(!fontFamily){
+        fontFamily = "Arial"
+    }
     
     try {
         let breakLines = text.split("\n")
@@ -38,9 +42,9 @@ function wrapText(text, fontsize, maxWidth) {
     }
 }
 
-function getTextWidth(inputText, fontSize) {
+function getTextWidth(inputText, fontSize, fontFamily) {
     //console.log("getTextWidth...");
-    let font = fontSize + "px arial";
+    let font = fontSize + "px " + fontFamily;
 
     let canvas = document.createElement("canvas");
     let context = canvas.getContext("2d");

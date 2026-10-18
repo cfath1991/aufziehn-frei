@@ -59,7 +59,7 @@ class myPDF {
     }
     if (max_length) {
       try {
-        text = wrapText(text, fontSize, max_length)
+        text = wrapText(text, fontSize, max_length, fontFamily)
       } catch (error) {
         console.error(error);
       }
