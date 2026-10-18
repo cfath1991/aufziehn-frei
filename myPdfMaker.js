@@ -21,6 +21,11 @@ class myPDF {
     }
     this.nextLine = this.offsets.top
     this.isFixedY = false
+    this.cache = {
+      linecount: 0,
+      x: 0,
+      y: 0
+    }
     this.font = {
       family: "Arial",
       weight: "normal",
@@ -29,7 +34,7 @@ class myPDF {
   }
 
   addText(text, fontSize, align, fontWeight, fontFamily, lineGap, x, y, max_length) {
-    //console.log("[myPdfMaker.js] addText()", x);
+    console.log("[myPdfMaker.js] addText()", text);
 
     if (!text) {
       return
@@ -78,15 +83,24 @@ class myPDF {
       y: y
     })
 
-    if (this.isFixedY) {
-      return
-    }
-
     this.jsPdf.setFont(fontFamily, fontWeight)
     this.jsPdf.setFontSize(fontSize)
 
     const lineHeight = this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor;
     const textLines = text.split("\n").length
+
+    console.log("cache.linecount =", this.cache.linecount)
+    console.log("textlines =", textLines);
+
+    if (this.isFixedY) {
+      if(this.cache.linecount < textLines){
+        this.cache.linecount = textLines
+        this.cache.y = this.nextLine + (lineHeight * textLines)
+        
+      }
+      return
+    }
+
     this.nextLine += lineHeight * textLines
   }
 
@@ -180,11 +194,16 @@ class myPDF {
   }
 
   blockY() {
+    console.log("[blockY...]");
     this.isFixedY = true
   }
 
   releaseY() {
+    console.log("[releaseY...]");
+    
     this.isFixedY = false
+    this.nextLine = this.cache.y
+    this.cache.linecount = 0
   }
 
   setNextLine(value, scaleFactor) {
@@ -201,7 +220,7 @@ class myPDF {
       value = this.nextLine + (this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor) * scaleFactor;
     }
 
-    this.nextLine = value
+    this.nextLine = Math.floor(value)
   }
 
   table(cell_count, x, y, w, h, spacing) {
@@ -216,7 +235,7 @@ class myPDF {
       y = this.nextLine
     }
     if (!w) {
-      w = this.w
+      w = this.w - this.white_border
     }
     if (!h) {
       h = this.h

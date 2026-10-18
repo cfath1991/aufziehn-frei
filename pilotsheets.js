@@ -19,7 +19,7 @@ const testData = {
                 glider: "Gleitschirm einer Firma in Grün (CCC)",
                 total_flights: "1000-1500",
                 recent_flights: "50-100",
-                health_info: "Testname"
+                health_info: "Testname: (Nur zur Erklärung: Flugschein  Flugschein wurde zwar 2011 (?wurde zwar 2011 (?) Flugschein wurde zwar 2011 (? abs Flugschein wurde zwar 2011 (?olv Flugschein wurde zwar 2011 (?iert (siehe Datumar 2011 (?) absolviert (siehe Datum im Flugschein), im Flugschein), ich bin abaktiv seit 2026 am Fliegen (Auffrischungskurs w"
             }
         },
         {
@@ -103,8 +103,8 @@ function createPdf(data) {
         pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[5].cell_x, null, table[5].cell_w)
         pdf.releaseY()
     }
-    pdf.addNewPage()
-    pdf.addImage("https://i.ibb.co/SDfYwZ5H/Aufziehn-Frei-Icons.png", "png")
+    //pdf.addNewPage()
+    //pdf.addImage("https://i.ibb.co/SDfYwZ5H/Aufziehn-Frei-Icons.png", "png")
     pdf.download("Teilnehmer " + data.tour.title || "Teilnehmerliste")
 }
 
