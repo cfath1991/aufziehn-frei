@@ -1,9 +1,22 @@
 const textStatus = document.getElementById("textStatus")
 
+const isPublished = false
+const testData = {
+    tour: {
+        title: "Testtitle",
+        dates_formatted: "01.01.1900 - 99.99.9999"
+    },
+    booked_by: []
+}
+
 let data
 
 function run() {
     console.log("[run...]");
+
+    if(!isPublished){
+        createPdf(testData)
+    }
 
     window.addEventListener('message', (event) => {
         console.log("New message...", event)
@@ -31,17 +44,18 @@ function createPdf(data) {
     pdf.addText(data.tour.title, 25, "center", "bold")
     pdf.addText(data.tour.dates_formatted, 18, "center")
 
-    const table = pdf.table(6, null, null, null, null, [pdf.offsets.x, 40, 72, 105, 140, 180])
+    //const table = pdf.table(6, null, null, null, null, [pdf.offsets.left, 40, 72, 105, 140, 180])
+    const table = pdf.table(6, null, null, null, null, [pdf.offsets.left, 20, 40, 80, 160, 320])
     console.log("table", table);
 
     pdf.setNextLine()
     pdf.blockY()
-    pdf.addText("Name", 8, null, null, null, null, table[0].cell_x)
-    pdf.addText("Nachname", 8, null, null, null, null, table[1].cell_x)
-    pdf.addText("Geburtstag", 8, null, null, null, null, table[2].cell_x)
-    pdf.addText("Gleitschirm", 8, null, null, null, null, table[3].cell_x)
-    pdf.addText("Flugerfahrung", 8, null, null, null, null, table[4].cell_x)
-    pdf.addText("Sonstiges", 8, null, null, null, null, table[5].cell_x)
+    pdf.addText("Name", null, null, null, null, null, table[0].cell_x)
+    pdf.addText("Nachname", null, null, null, null, null, table[1].cell_x)
+    pdf.addText("Geburtstag", null, null, null, null, null, table[2].cell_x)
+    pdf.addText("Gleitschirm", null, null, null, null, null, table[3].cell_x)
+    pdf.addText("Flugerfahrung", null, null, null, null, null, table[4].cell_x)
+    pdf.addText("Sonstiges", null, null, null, null, null, table[5].cell_x)
     pdf.releaseY()
     pdf.setNextLine(null, 0.5)
     pdf.addLine()
@@ -52,12 +66,12 @@ function createPdf(data) {
 
         pdf.setNextLine()
         pdf.blockY()
-        pdf.addText(person.first_name, null, null, null, null, null, table[0].cell_x)
-        pdf.addText(person.last_name, null, null, null, null, null, table[1].cell_x)
-        pdf.addText(person.birthday_formatted, null, null, null, null, null, table[2].cell_x)
-        pdf.addText(sheet?.glider || "", null, null, null, null, null, table[3].cell_x)
-        pdf.addText(sheet?.total_flights || "", null, null, null, null, null, table[4].cell_x)
-        pdf.addText(sheet?.health_info || "", null, null, null, null, null, table[5].cell_x)
+        pdf.addText(person.first_name, 8, null, null, null, null, table[0].cell_x)
+        pdf.addText(person.last_name, 8, null, null, null, null, table[1].cell_x)
+        pdf.addText(person.birthday_formatted, 8, null, null, null, null, table[2].cell_x)
+        pdf.addText(sheet?.glider || "", 8, null, null, null, null, table[3].cell_x)
+        pdf.addText(sheet?.total_flights || "", 8, null, null, null, null, table[4].cell_x)
+        pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[5].cell_x)
         pdf.releaseY()
     }
     pdf.addNewPage()

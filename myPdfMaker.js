@@ -9,8 +9,8 @@ class myPDF {
       format: format.toLowerCase() + "",
       putOnlyUsedFonts: true
     })
-    this.w =  this.jsPdf.internal.pageSize.width - 15
-    this.h =  this.jsPdf.internal.pageSize.height - 15
+    this.w = this.jsPdf.internal.pageSize.width - 15
+    this.h = this.jsPdf.internal.pageSize.height - 15
     this.dla = []
     this.offsets = {
       top: 20,
@@ -70,7 +70,7 @@ class myPDF {
       y: y
     })
 
-    if(this.isFixedY){
+    if (this.isFixedY) {
       return
     }
 
@@ -131,8 +131,8 @@ class myPDF {
     if (orig_ext.toLowerCase() != "png"
       && orig_ext.toLowerCase() != "jpeg"
       && orig_ext.toLowerCase() != "jpg") {
-        console.error("[myPdfMaker] addImage() provided image must be type of png, jpeg or jpg");
-        return
+      console.error("[myPdfMaker] addImage() provided image must be type of png, jpeg or jpg");
+      return
     }
 
 
@@ -171,66 +171,80 @@ class myPDF {
     })
   }
 
-  blockY(){
+  blockY() {
     this.isFixedY = true
   }
 
-  releaseY(){
+  releaseY() {
     this.isFixedY = false
   }
 
-  setNextLine(value, scaleFactor){
-    if(value && scaleFactor){
+  setNextLine(value, scaleFactor) {
+    if (value && scaleFactor) {
       console.error("only value or scalefactor can be chosen");
       scaleFactor = 1
     }
-    
-    if(!scaleFactor){
+
+    if (!scaleFactor) {
       scaleFactor = 1
     }
 
-    if(!value){
-      value = this.nextLine + ( this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor) * scaleFactor;
+    if (!value) {
+      value = this.nextLine + (this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor) * scaleFactor;
     }
 
     this.nextLine = value
   }
 
-  table(cell_count, x, y, w, h, spacing){
-    if(!cell_count){
+  table(cell_count, x, y, w, h, spacing) {
+    if (!cell_count) {
       console.warn("...no cell_count provided");
       cell_count = 2
     }
-    if(!x){
+    if (!x) {
       x = this.offsets.left
     }
-    if(!y){
+    if (!y) {
       y = this.nextLine
     }
-    if(!w){
+    if (!w) {
       w = this.w
     }
-    if(!h){
+    if (!h) {
       h = this.h
     }
 
-    if(spacing && spacing.length != cell_count){
+    if (spacing && spacing.length != cell_count) {
       console.error("...spacing[] must be length of cell count");
       cell_count = spacing.length
     }
 
-    if(spacing){
+    if (spacing) {
+      let r = []
+      for (let i = 0; i < spacing.length; i++) {
+        let x = spacing[0] || this.offsets.left
+        for (let j = 0; j < i; j++) {
+          x += spacing[j] || 30
+        }
+        r.push({
+          cell_x: x,
+          cell_y: y
+        })
+      }
+      return r
+      /*
       return spacing.map((s)=>{
         return {
           cell_x: s,
           cell_y: y
         }
       })
+      */
     }
 
     const cell_w = w / cell_count
     const array = []
-    
+
     for (let i = 0; i < cell_count; i++) {
       array.push({
         cell_x: x + i * cell_w,
