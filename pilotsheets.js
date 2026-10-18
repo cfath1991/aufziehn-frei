@@ -1,6 +1,6 @@
 const textStatus = document.getElementById("textStatus")
 
-const isPublished = false
+const isPublished = true
 
 const testData = {
     tour: {
@@ -75,7 +75,7 @@ function createPdf(data) {
     let pdf = new myPDF("a4", "l")
     pdf.addImage("https://i.ibb.co/nqX7MygR/Aufziehen-frei.jpg", "jpg", pdf.w - 100, 10, 78, 60)
     pdf.addText(data.tour.title, 25, "center", "bold")
-    pdf.addText(data.tour.dates_formatted, 12, "center")
+    pdf.addText(data.tour.dates_formatted, 18, "center")
 
 
     const table = pdf.getTable(
