@@ -12,11 +12,12 @@ class myPDF {
     this.w = this.jsPdf.internal.pageSize.width
     this.h = this.jsPdf.internal.pageSize.height
     this.dla = []
+    this.white_border = 50
     this.offsets = {
-      top: 50,
-      bottom: this.h - 50,
-      left: 50,
-      right: this.w
+      top: this.white_border,
+      bottom: this.h - this.white_border,
+      left: this.white_border,
+      right: this.w - this.white_border
     }
     this.nextLine = this.offsets.top
     this.isFixedY = false

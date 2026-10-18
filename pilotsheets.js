@@ -1,6 +1,6 @@
 const textStatus = document.getElementById("textStatus")
 
-const isPublished = false
+const isPublished = true
 
 const testData = {
     tour: {
@@ -74,7 +74,7 @@ function createPdf(data) {
     pdf.addText(data.tour.title, 25, "center", "bold")
     pdf.addText(data.tour.dates_formatted, 18, "center")
 
-    const table = pdf.table(10, null, null, null, null, [pdf.offsets.left, 80, 180, 250, 400, 480])
+    const table = pdf.table(10, null, null, null, null, [pdf.offsets.left, 108, 180, 250, 400, 480])
     console.log("table", table);
 
     pdf.setNextLine()
