@@ -222,7 +222,7 @@ class myPDF {
     if (spacing) {
       let r = []
       for (let i = 0; i < spacing.length; i++) {
-        let x = spacing[0] || this.offsets.left
+        let x = this.offsets.left
         for (let j = 0; j < i; j++) {
           x += spacing[j] || 30
         }
