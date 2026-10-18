@@ -220,6 +220,7 @@ class myPDF {
     }
 
     if (spacing) {
+      /*
       let r = []
       for (let i = 0; i < spacing.length; i++) {
         let x = this.offsets.left
@@ -232,14 +233,15 @@ class myPDF {
         })
       }
       return r
-      /*
+      */
+      
       return spacing.map((s)=>{
         return {
           cell_x: s,
           cell_y: y
         }
       })
-      */
+      
     }
 
     const cell_w = w / cell_count
