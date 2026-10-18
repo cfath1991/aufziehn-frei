@@ -9,13 +9,13 @@ class myPDF {
       format: format.toLowerCase() + "",
       putOnlyUsedFonts: true
     })
-    this.w = this.jsPdf.internal.pageSize.width - 15
-    this.h = this.jsPdf.internal.pageSize.height - 15
+    this.w = this.jsPdf.internal.pageSize.width
+    this.h = this.jsPdf.internal.pageSize.height
     this.dla = []
     this.offsets = {
-      top: 20,
-      bottom: this.h - 20,
-      left: 15,
+      top: 50,
+      bottom: this.h - 50,
+      left: 50,
       right: this.w
     }
     this.nextLine = this.offsets.top
