@@ -19,6 +19,7 @@ class myPDF {
       left: this.white_border,
       right: this.w - this.white_border
     }
+    this.current_y = this.offsets.top
     this.nextLine = this.offsets.top
     this.isFixedY = false
     this.cache = {
@@ -31,6 +32,14 @@ class myPDF {
       weight: "normal",
       size: 10
     }
+  }
+
+  saveCurrentY(){
+    this.cache.y = this.current_y
+  }
+
+  restoreCurrentY(){
+    this.nextLine = this.cache.y
   }
 
   addText(text, fontSize, align, fontWeight, fontFamily, lineGap, x, y, max_length) {
@@ -82,6 +91,8 @@ class myPDF {
       x: x,
       y: y
     })
+
+    this.current_y = y
 
     this.jsPdf.setFont(fontFamily, fontWeight)
     this.jsPdf.setFontSize(fontSize)
@@ -143,15 +154,15 @@ class myPDF {
 
     if (!imgUrl) {
       console.warn("(addImage) ...no imgUrl provided");
-      imgUrl = urL_missing_img.replace(".png", "")
+      imgUrl = urL_missing_img//.replace(".png", "")
     }
 
     const orig_ext = imgUrl.split(".")[imgUrl.split(".").length - 1]
     if (orig_ext.toLowerCase() != "png"
       && orig_ext.toLowerCase() != "jpeg"
       && orig_ext.toLowerCase() != "jpg") {
-      console.error("[myPdfMaker] addImage() provided image must be type of png, jpeg or jpg");
-      return
+      console.error("[myPdfMaker] addImage() provided image must be type of png, jpeg or jpg. found instead: ", orig_ext);
+      //return
     }
 
 
