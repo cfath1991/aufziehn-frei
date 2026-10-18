@@ -191,12 +191,12 @@ class myPDF {
   }
 
   blockY() {
-    console.log("[blockY...]");
+    //console.log("[blockY...]");
     this.isFixedY = true
   }
 
   releaseY() {
-    console.log("[releaseY...]");
+    //console.log("[releaseY...]");
     
     this.isFixedY = false
     this.nextLine = this.cache.y
