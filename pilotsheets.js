@@ -1,6 +1,6 @@
 const textStatus = document.getElementById("textStatus")
 
-const isPublished = true
+const isPublished = false
 
 const testData = {
     tour: {
@@ -74,7 +74,7 @@ function createPdf(data) {
     pdf.addText(data.tour.title, 25, "center", "bold")
     pdf.addText(data.tour.dates_formatted, 18, "center")
 
-    const table = pdf.table(10, null, null, null, null, [pdf.offsets.left, 108, 180, 250, 400, 480])
+    const table = pdf.table(10, null, null, null, null, [pdf.offsets.left, 108, 180, 250, 390, 480])
     console.log("table", table);
 
     pdf.setNextLine()
@@ -95,12 +95,12 @@ function createPdf(data) {
 
         pdf.setNextLine()
         pdf.blockY()
-        pdf.addText(person.first_name, 8, null, null, null, null, table[0].cell_x, null, table[0].cell_w)
-        pdf.addText(person.last_name, 8, null, null, null, null, table[1].cell_x, null, table[1].cell_w)
-        pdf.addText(person.birthday_formatted, 8, null, null, null, null, table[2].cell_x, null, table[2].cell_w)
-        pdf.addText(sheet?.glider || "", 8, null, null, null, null, table[3].cell_x, null, table[3].cell_w)
-        pdf.addText((sheet?.total_flights || "") + "\n(" + (sheet?.recent_flights || "") + ")", 8, null, null, null, null, table[4].cell_x, null, table[4].cell_w)
-        pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[5].cell_x, null, table[5].cell_w)
+        pdf.addText(person.first_name, 8, null, null, null, null, table[0].cell_x, null, table[0].cell_w * 0.9)
+        pdf.addText(person.last_name, 8, null, null, null, null, table[1].cell_x, null, table[1].cell_w * 0.9)
+        pdf.addText(person.birthday_formatted, 8, null, null, null, null, table[2].cell_x, null, table[2].cell_w * 0.9)
+        pdf.addText(sheet?.glider || "", 8, null, null, null, null, table[3].cell_x, null, table[3].cell_w * 0.9)
+        pdf.addText((sheet?.total_flights || "") + "\n(" + (sheet?.recent_flights || "") + ")", 8, null, null, null, null, table[4].cell_x, null, table[4].cell_w * 0.9)
+        pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[5].cell_x, null, table[5].cell_w * 0.9)
         pdf.releaseY()
     }
     //pdf.addNewPage()
