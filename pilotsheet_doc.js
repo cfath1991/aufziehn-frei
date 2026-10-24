@@ -139,17 +139,14 @@ function addDocument(pdf, data) {
     const cbxX = 120
     const cbxHeight = 26
     const cbxWidth = 320
-    try {
-        pdf.addCheckbox(sheet.isGearChecked?.text, sheet.isGearChecked?.isChecked, cbxX, null, cbxWidth, cbxHeight)
-        pdf.addCheckbox(sheet.isRescuePacked?.text, sheet.isRescuePacked?.isChecked, cbxX, null, cbxWidth, cbxHeight)
-        pdf.addCheckbox(sheet.isCompability?.text, sheet.isCompability?.isChecked, cbxX, null, cbxWidth, cbxHeight)
-        pdf.addCheckbox(sheet.isInsurance?.text, sheet.isInsurance?.isChecked, cbxX, null, cbxWidth, cbxHeight)
-        pdf.addCheckbox(sheet.isHealthOk?.text, sheet.isHealthOk?.isChecked, cbxX, null, cbxWidth, cbxHeight)
 
-    } catch (error) {
-        console.error(error);
+    pdf.addCheckbox(sheet.isGearChecked?.text || "", sheet.isGearChecked?.isChecked || false, cbxX, null, cbxWidth, cbxHeight)
+    pdf.addCheckbox(sheet.isRescuePacked?.text || "", sheet.isRescuePacked?.isChecked || false, cbxX, null, cbxWidth, cbxHeight)
+    pdf.addCheckbox(sheet.isCompability?.text || "", sheet.isCompability?.isChecked || false, cbxX, null, cbxWidth, cbxHeight)
+    pdf.addCheckbox(sheet.isInsurance?.text || "", sheet.isInsurance?.isChecked || false, cbxX, null, cbxWidth, cbxHeight)
+    pdf.addCheckbox(sheet.isHealthOk?.text || "", sheet.isHealthOk?.isChecked || false, cbxX, null, cbxWidth, cbxHeight)
 
-    }
+
 
     pdf.skipLines(3)
     const y_sign = pdf.getNextLine()
