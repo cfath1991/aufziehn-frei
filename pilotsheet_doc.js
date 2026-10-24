@@ -127,7 +127,7 @@ function addDocument(pdf, data) {
     sheet.health_info = "Das ist eine Testinfo, die dafür interessant sein könnte, ob dieser Text dann auch konsequent in mehrere Zeilen verpackt wird bzw ob dies dann auch so funktioniert, dass es nach was aussieht!\nDas ist eine Testinfo!"
     */
 
-    pdf.addInput("Was möchtest du uns mitteilen?", sheet.health_info, null, null, pdf.w - pdf.white_border * 2, null, 4)
+    pdf.addInput("Möchtest du uns noch etwas Wichtiges mitteilen?", sheet.health_info, null, null, pdf.w - pdf.white_border * 2, null, 4)
 
     pdf.skipLines(1)
     const cbxX = 120
