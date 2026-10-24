@@ -208,6 +208,8 @@ class myPDF {
   }
 
   addInput(label, value, x, y, w, fontSize, line_count) {
+    console.log("[myPdfMaker] addInput()");
+    
     const tmp_lg = this.lineGap
     this.lineGap = 1
 

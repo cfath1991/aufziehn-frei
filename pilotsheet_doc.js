@@ -51,8 +51,14 @@ async function createPdf(data) {
 function addDocument(pdf, data) {
     console.log("addDocument...", data);
 
-    const contact = data.temp_contact
-    const sheet = data.temp_pilotsheet
+    let contact = data.temp_contact
+    if(!contact){
+        contact = {}
+    }
+    let sheet = data.temp_pilotsheet
+    if(!sheet){
+        sheet = {}
+    }
 
     pdf.setLineGap(0)
     pdf.addImage("https://i.ibb.co/nqX7MygR/Aufziehen-frei.jpg", "jpg", pdf.w - 100, 10, 78, 60)
