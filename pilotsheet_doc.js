@@ -64,29 +64,34 @@ function addDocument(pdf, data){
 
     pdf.addImage(null, null, null, null, 100, 100)
 
-    let y_pilot = pdf.getNextLine()
-
+    pdf.blockY()
     pdf.addInput("Name:", contact.first_name + " " + contact.last_name, table_person[1].cell_x)
-    pdf.addInput("Straße:", contact.street_formatted, table_person[1].cell_x)
-    pdf.addInput("Postleitzahl / Stadt:", contact.postalcode_formatted + " " + contact.city_formatted, table_person[1].cell_x)
-
-    let y_ausrustung = pdf.getNextLine()
-    pdf.setNextLine(y_pilot)
-
     pdf.addInput("Geburtstag", contact.birthday_formatted, table_person[2].cell_x)
-    pdf.addInput("Email:", contact.email1, table_person[2].cell_x)
-    pdf.addInput("Tel.:", contact.phone1, table_person[2].cell_x)
+    pdf.releaseY()
 
-    pdf.setNextLine(y_ausrustung)
-    pdf.skipLines(4)
+    pdf.skipLines(2)
+    pdf.blockY()
+    pdf.addInput("Straße:", contact.street_formatted, table_person[1].cell_x)
+    pdf.addInput("Email:", contact.email1, table_person[2].cell_x)
+    pdf.releaseY()
+
+    pdf.skipLines(2)
+    pdf.blockY()
+    pdf.addInput("Postleitzahl / Stadt:", contact.postalcode_formatted + " " + contact.city_formatted, table_person[1].cell_x)
+    pdf.addInput("Tel.:", contact.phone1, table_person[2].cell_x)
+    pdf.releaseY()
+
+    pdf.skipLines(2)
+    pdf.addInput("Land:", contact.city_formatted, table_person[1].cell_x)
+
+    pdf.skipLines(2)
     pdf.addText("2. Ausrüstung:", 12, "left", "bold")
 
     const table_sheet = pdf.getTable(["","",""])
 
     pdf.blockY()
-    pdf.addInput("Gleitschirm (Modell & Farbe) + EN-Norm:", sheet.glider + " (EN-" + sheet.glider_norm + ")", table_sheet[0].cell_x, null, 315)
-    //pdf.addInput("EN-Norm / LTF:", sheet.glider_norm, table_sheet[1].cell_x)
-    pdf.addInput("Startgewicht:", sheet.takeoff_weight, table_sheet[2].cell_x)
+    pdf.addInput("Gleitschirm (Modell & Farbe) + EN-Norm:", sheet.glider + " | EN-" + sheet.glider_norm + "", table_sheet[0].cell_x, null, 315)
+    pdf.addInput("Startgewicht:", sheet.takeoff_weight + "kg", table_sheet[2].cell_x)
     pdf.releaseY()
 
     pdf.skipLines(2)
@@ -121,14 +126,16 @@ function addDocument(pdf, data){
     pdf.addInput("Was möchtest du uns mitteilen?", sheet.health_info, null, null, pdf.w - pdf.white_border * 2, null, 4)
     
     pdf.skipLines(1)
-    const cbxHeight = 30
-    pdf.addCheckbox(sheet.isGearChecked.text, sheet.isGearChecked.isChecked, null, null, null, cbxHeight)
-    pdf.addCheckbox(sheet.isRescuePacked.text, sheet.isRescuePacked.isChecked, null, null, null, cbxHeight)
-    pdf.addCheckbox(sheet.isCompability.text, sheet.isCompability.isChecked, null, null, null, cbxHeight)
-    pdf.addCheckbox(sheet.isInsurance.text, sheet.isInsurance.isChecked, null, null, null, cbxHeight)
-    pdf.addCheckbox(sheet.isHealthOk.text, sheet.isHealthOk.isChecked, null, null, null, cbxHeight)
+    const cbxX = 120
+    const cbxHeight = 26
+    const cbxWidth = 320
+    pdf.addCheckbox(sheet.isGearChecked.text, sheet.isGearChecked.isChecked, cbxX, null, cbxWidth, cbxHeight)
+    pdf.addCheckbox(sheet.isRescuePacked.text, sheet.isRescuePacked.isChecked, cbxX, null, cbxWidth, cbxHeight)
+    pdf.addCheckbox(sheet.isCompability.text, sheet.isCompability.isChecked, cbxX, null, cbxWidth, cbxHeight)
+    pdf.addCheckbox(sheet.isInsurance.text, sheet.isInsurance.isChecked, cbxX, null, cbxWidth, cbxHeight)
+    pdf.addCheckbox(sheet.isHealthOk.text, sheet.isHealthOk.isChecked, cbxX, null, cbxWidth, cbxHeight)
     
-    pdf.skipLines(2)
+    pdf.skipLines(3)
     const y_sign = pdf.getNextLine()
     pdf.addLine(null, y_sign, 250, y_sign)
     pdf.addLine(pdf.offsets.right + pdf.white_border - 250, y_sign, pdf.offsets.right, y_sign)

@@ -54,7 +54,7 @@ class myPDF {
       return
     }
     if (!fontSize) {
-      fontSize =  this.font.size
+      fontSize = this.font.size
     }
     if (!fontWeight) {
       fontWeight = "normal"
@@ -269,7 +269,7 @@ class myPDF {
       y = this.nextLine
     }
     if (!fontSize) {
-      fontSize =  this.font.size
+      fontSize = this.font.size
     }
     if (!w) {
       w = this.w - this.white_border * 2 - x
