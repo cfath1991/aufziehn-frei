@@ -154,6 +154,7 @@ class myPDF {
     })
 
     this.nextLine = this.offsets.top
+    this.current_y = this.offsets.top
   }
 
   addImage(imgUrl, fileExt, x, y, w, h) {
