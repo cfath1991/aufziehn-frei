@@ -25,6 +25,7 @@ function run() {
         textStatus.text = "...erfolgreich authentifiziert"
 
         data = JSON.parse(event.data)
+        createPdf(data)
     });
 }
 
