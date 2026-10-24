@@ -21,6 +21,7 @@ class myPDF {
     }
     this.current_y = this.offsets.top
     this.nextLine = this.offsets.top
+    this.lineGap = 0
     this.isFixedY = false
     this.cache = {
       linecount: 0,
@@ -34,12 +35,16 @@ class myPDF {
     }
   }
 
-  saveCurrentY(){
+  saveCurrentY() {
+    console.log("[myPdfMaker] saveCurrentY()", this.current_y);
     this.cache.y = this.current_y
+    return this.cache.y
   }
 
-  restoreCurrentY(){
+  restoreCurrentY() {
     this.nextLine = this.cache.y
+    this.current_y = this.nextLine
+    return this.cache.y
   }
 
   addText(text, fontSize, align, fontWeight, fontFamily, lineGap, x, y, max_length) {
@@ -49,7 +54,7 @@ class myPDF {
       return
     }
     if (!fontSize) {
-      fontSize = 12
+      fontSize =  this.font.size
     }
     if (!fontWeight) {
       fontWeight = "normal"
@@ -61,7 +66,7 @@ class myPDF {
       align = "left"
     }
     if (!lineGap) {
-      lineGap = fontSize * 0.5
+      lineGap = this.lineGap
     }
     if (!x) {
       x = this.offsets.left
@@ -97,19 +102,18 @@ class myPDF {
     this.jsPdf.setFont(fontFamily, fontWeight)
     this.jsPdf.setFontSize(fontSize)
 
-    const lineHeight = this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor;
+    const lineHeight = this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor
     const textLines = text.split("\n").length
 
     if (this.isFixedY) {
-      if(this.cache.linecount < textLines){
+      if (this.cache.linecount < textLines) {
         this.cache.linecount = textLines
         this.cache.y = this.nextLine + (lineHeight * textLines)
-        
       }
       return
     }
 
-    this.nextLine += lineHeight * textLines
+    this.nextLine += lineHeight * textLines + this.lineGap
   }
 
   addLine(xStart, yStart, xEnd, yEnd) {
@@ -131,6 +135,8 @@ class myPDF {
       yEnd = this.nextLine
     }
 
+    this.current_y = yStart
+
     this.dla.push({
       type: "line",
       value: {
@@ -151,10 +157,9 @@ class myPDF {
   }
 
   addImage(imgUrl, fileExt, x, y, w, h) {
-
     if (!imgUrl) {
       console.warn("(addImage) ...no imgUrl provided");
-      imgUrl = urL_missing_img//.replace(".png", "")
+      imgUrl = urL_missing_img
     }
 
     const orig_ext = imgUrl.split(".")[imgUrl.split(".").length - 1]
@@ -162,9 +167,7 @@ class myPDF {
       && orig_ext.toLowerCase() != "jpeg"
       && orig_ext.toLowerCase() != "jpg") {
       console.error("[myPdfMaker] addImage() provided image must be type of png, jpeg or jpg. found instead: ", orig_ext);
-      //return
     }
-
 
     if (!fileExt) {
       console.warn("(addImage) ...no fileExt provided");
@@ -188,6 +191,8 @@ class myPDF {
       h = 100
     }
 
+    this.current_y = y + h
+
     this.dla.push({
       type: "image",
       value: {
@@ -201,6 +206,93 @@ class myPDF {
     })
   }
 
+  addInput(label, value, x, y, w, fontSize, line_count) {
+    const tmp_lg = this.lineGap
+    this.lineGap = 1
+
+    if (!label) {
+      label = "label"
+    }
+
+    if (!x) {
+      x = this.offsets.left
+    }
+
+    if (!y) {
+      y = this.nextLine
+    }
+
+    if (!w) {
+      w = 150
+    }
+
+    if (!fontSize) {
+      fontSize = this.font.size
+    }
+
+    if (!line_count) {
+      line_count = 1
+    }
+
+    if (value) {
+      value = wrapText(value, fontSize, w * 0.95, this.fontFamily, this.fontWeight)
+    } else {
+      value = ""
+    }
+
+    this.addText(label, fontSize, "left", "bold", null, null, x, y)
+
+    const text_arr = value.split("\n")
+
+    const offset_y = fontSize + 4
+    for (let i = 0; i < line_count; i++) {
+      this.addText(text_arr[i] || "  ", fontSize, "left", null, null, null, x, this.current_y + offset_y)
+      this.addLine(x, this.current_y + 4, x + w, this.current_y + 4)
+
+    }
+    this.lineGap = tmp_lg
+
+    if (!this.isFixedY) {
+      this.setNextLine(this.current_y + offset_y)
+    }
+  }
+
+  addCheckbox(label, isChecked, x, y, w, h, fontSize) {
+    console.log("addCheckbox...");
+
+    const start_y = this.nextLine
+
+    if (!x) {
+      x = this.offsets.left
+    }
+    if (!y) {
+      y = this.nextLine
+    }
+    if (!fontSize) {
+      fontSize =  this.font.size
+    }
+    if (!w) {
+      w = this.w - this.white_border * 2 - x
+    }
+
+    this.dla.push({
+      type: "checkbox",
+      value: {
+        x: x,
+        y: y,
+        w: fontSize * 0.7,
+        h: fontSize * 0.7,
+        isChecked: isChecked
+      }
+    })
+
+    this.addText(label, fontSize, "left", "bold", null, null, x + fontSize * 2, y + fontSize * 0.6, w * 0.9)
+
+    if (h) {
+      this.setNextLine(start_y + h)
+    }
+  }
+
   blockY() {
     //console.log("[blockY...]");
     this.isFixedY = true
@@ -208,10 +300,19 @@ class myPDF {
 
   releaseY() {
     //console.log("[releaseY...]");
-    
+
     this.isFixedY = false
     this.nextLine = this.cache.y
     this.cache.linecount = 0
+  }
+
+  skipLines(count) {
+    if (!count) {
+      count = 1
+    }
+
+    const value = this.nextLine + ((this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor) * count);
+    this.nextLine = Math.floor(value)
   }
 
   setNextLine(value, scaleFactor) {
@@ -231,8 +332,20 @@ class myPDF {
     this.nextLine = Math.floor(value)
   }
 
+  setLineGap(value) {
+    if (!value) {
+      console.warn("[myPdfMaker] myPdf setLineGap() no value provided")
+      value = 0
+    }
+    this.lineGap = value
+  }
+
+  getNextLine() {
+    return this.nextLine
+  }
+
   getTable(name_array, spacing, x, y, w, h) {
-    if(!name_array || !Array.isArray(name_array)){
+    if (!name_array || !Array.isArray(name_array)) {
       console.warn("[myPdfMaker] getTable() No name_array provided");
       name_array = []
     }
@@ -244,7 +357,7 @@ class myPDF {
       y = this.nextLine
     }
     if (!w) {
-      w = this.w - this.white_border
+      w = this.w - this.white_border * 2
     }
     if (!h) {
       h = this.h
@@ -278,7 +391,7 @@ class myPDF {
   }
 
   async download(name) {
-    console.log("[myPdfMaker.js] download()");
+    //console.log("[myPdfMaker.js] download()");
 
     await this.renderPdf(this.dla)
 
@@ -297,7 +410,7 @@ class myPDF {
         const element = lineArray[i];
 
         if (element.type === "line") {
-          console.log("...add line");
+          //console.log("...add line");
 
           this.jsPdf.line(
             element.value.xStart,
@@ -308,6 +421,23 @@ class myPDF {
           continue
         }
 
+        if (element.type === "checkbox") {
+          this.jsPdf.rect(
+            element.value.x,
+            element.value.y,
+            element.value.w,
+            element.value.h,
+            "S" // stroke only
+          );
+
+          if (element.value.isChecked) {
+            this.jsPdf.setFont("Arial", "bold")
+            this.jsPdf.setFontSize(element.value.h * 1.4)
+            this.jsPdf.text("X", element.value.x, element.value.y + element.value.h)
+          }
+          continue
+        }
+
         if (element.type === "newPage") {
           console.log("...add new page");
           this.jsPdf.addPage();
@@ -315,13 +445,12 @@ class myPDF {
         }
 
         if (element.type === "image") {
-          console.log("...add image", element.value);
+          //console.log("...add image", element.value);
 
           const img = await loadImage(element.value.imgUrl + "." + element.value.fileExt.toLowerCase())
-          console.log("...img loaded", img);
+          //console.log("...img loaded", img);
 
-          const ratio = img.width / img.height
-          console.log("ratio", ratio);
+          //const ratio = img.width / img.height
 
           await this.jsPdf.addImage(
             img,
@@ -331,8 +460,6 @@ class myPDF {
             element.value.w,
             element.value.h,
           );
-
-          console.log("...img added to pdf");
         }
 
         if (element.type === "text") {

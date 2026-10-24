@@ -2,7 +2,7 @@ let canvas = document.createElement("canvas");
 let context = canvas.getContext("2d");
 
 function wrapText(text, fontsize, maxWidth, fontFamily, fontWeight) {
-    //console.log("[wrapText...]", maxWidth);
+    console.log("[wrapText...]", maxWidth);
 
     if(!fontWeight){
         fontWeight = "normal"

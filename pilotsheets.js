@@ -1,6 +1,6 @@
 const textStatus = document.getElementById("textStatus")
 
-const isPublished = true
+const isPublished = false
 
 const testData = {
     tour: {
