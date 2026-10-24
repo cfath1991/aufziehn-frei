@@ -235,7 +235,7 @@ class myPDF {
     }
 
     if (value) {
-      value = wrapText(value, fontSize, w * 0.95, this.fontFamily, this.fontWeight)
+      value = wrapText(value, fontSize, w * 0.9, this.fontFamily, this.fontWeight)
     } else {
       value = ""
     }
