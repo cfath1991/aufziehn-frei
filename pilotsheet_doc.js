@@ -100,8 +100,19 @@ function addDocument(pdf, data) {
     const table_sheet = pdf.getTable(["", "", ""])
 
     pdf.blockY()
-    pdf.addInput("Gleitschirm (Modell & Farbe) + EN-Norm:", sheet.glider + " | EN-" + sheet.glider_norm + "", table_sheet[0].cell_x, null, 315)
-    pdf.addInput("Startgewicht:", sheet.takeoff_weight + "kg", table_sheet[2].cell_x)
+
+    let glider = ""
+    if(sheet.glider && sheet.glider_norm){
+        glider = sheet.glider + " | EN-" + sheet.glider_norm
+    }
+
+    let weight = ""
+    if(sheet.takeoff_weight){
+        weigth = sheet.takeoff_weight + "kg"
+    }
+
+    pdf.addInput("Gleitschirm (Modell & Farbe) + EN-Norm:", glider, table_sheet[0].cell_x, null, 315)
+    pdf.addInput("Startgewicht:", weight, table_sheet[2].cell_x)
     pdf.releaseY()
 
     pdf.skipLines(2)
@@ -128,11 +139,7 @@ function addDocument(pdf, data) {
 
     pdf.skipLines(3)
     pdf.addText("4. Besondere Informationen:", 12, "left", "bold")
-
-    /*
-    sheet.health_info = "Das ist eine Testinfo, die dafür interessant sein könnte, ob dieser Text dann auch konsequent in mehrere Zeilen verpackt wird bzw ob dies dann auch so funktioniert, dass es nach was aussieht!\nDas ist eine Testinfo!"
-    */
-
+    
     pdf.addInput("Möchtest du uns noch etwas Wichtiges mitteilen?", sheet.health_info, null, null, pdf.w - pdf.white_border * 2, null, 4)
 
     pdf.skipLines(1)
@@ -145,8 +152,6 @@ function addDocument(pdf, data) {
     pdf.addCheckbox(sheet.isCompability?.text || "", sheet.isCompability?.isChecked || false, cbxX, null, cbxWidth, cbxHeight)
     pdf.addCheckbox(sheet.isInsurance?.text || "", sheet.isInsurance?.isChecked || false, cbxX, null, cbxWidth, cbxHeight)
     pdf.addCheckbox(sheet.isHealthOk?.text || "", sheet.isHealthOk?.isChecked || false, cbxX, null, cbxWidth, cbxHeight)
-
-
 
     pdf.skipLines(3)
     const y_sign = pdf.getNextLine()
