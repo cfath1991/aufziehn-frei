@@ -106,7 +106,7 @@ function addDocument(pdf, data) {
         glider = sheet.glider + " | EN-" + sheet.glider_norm
     }
 
-    let weight = sheet.takeoff_weight + "kg"
+    let weight = sheet.takeoff_weight.replace("kg","") + "kg"
     if(! sheet.takeoff_weight){
         weight = ""
     }
