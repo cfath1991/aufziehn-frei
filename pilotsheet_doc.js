@@ -106,9 +106,11 @@ function addDocument(pdf, data) {
         glider = sheet.glider + " | EN-" + sheet.glider_norm
     }
 
-    let weight = sheet.takeoff_weight.replace("kg","") + "kg"
+    let weight = sheet.takeoff_weight
     if(! sheet.takeoff_weight){
         weight = ""
+    } else {
+        weight = sheet.takeoff_weight.replace("kg","") + "kg"
     }
 
     pdf.addInput("Gleitschirm (Modell & Farbe) + EN-Norm:", glider, table_sheet[0].cell_x, null, 315)
