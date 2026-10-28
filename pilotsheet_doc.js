@@ -63,8 +63,10 @@ function addDocument(pdf, data) {
     pdf.setLineGap(0)
     pdf.addImage("https://i.ibb.co/nqX7MygR/Aufziehen-frei.jpg", "jpg", pdf.w - 100, 10, 78, 60)
     pdf.addText("Pilotenblatt", 25, "center", "bold")
-    pdf.addText(data.temp_tour.title, 16, "center", "normal")
-    pdf.addText("(" + data.temp_tour.dates_formatted + ")", 12, "center", "normal")
+    if (data.temp_tour) {
+        pdf.addText(data.temp_tour?.title || "", 16, "center", "normal")
+        pdf.addText("(" + data.temp_tour?.dates_formatted + ")", 12, "center", "normal")
+    }
     pdf.setLineGap(10)
 
     const table_person = pdf.getTable(["", "", ""])
@@ -102,15 +104,15 @@ function addDocument(pdf, data) {
     pdf.blockY()
 
     let glider = ""
-    if(sheet.glider && sheet.glider_norm){
+    if (sheet.glider && sheet.glider_norm) {
         glider = sheet.glider + " | EN-" + sheet.glider_norm
     }
 
     let weight = sheet.takeoff_weight
-    if(! sheet.takeoff_weight){
+    if (!sheet.takeoff_weight) {
         weight = ""
     } else {
-        weight = sheet.takeoff_weight.replace("kg","") + "kg"
+        weight = sheet.takeoff_weight.replace("kg", "") + "kg"
     }
 
     pdf.addInput("Gleitschirm (Modell & Farbe) + EN-Norm:", glider, table_sheet[0].cell_x, null, 315)
@@ -141,7 +143,7 @@ function addDocument(pdf, data) {
 
     pdf.skipLines(3)
     pdf.addText("4. Besondere Informationen:", 12, "left", "bold")
-    
+
     pdf.addInput("Möchtest du uns noch etwas Wichtiges mitteilen?", sheet.health_info, null, null, pdf.w - pdf.white_border * 2, null, 4)
 
     pdf.skipLines(1)
