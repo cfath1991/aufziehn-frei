@@ -47,7 +47,7 @@ async function createPdf(data) {
         data.length === 1 ? save_name = data[0].temp_contact.first_name + " " + data[0].temp_contact.last_name : save_name = data.length + " Pilotenblätter (" + data[0].temp_tour.title + ")"
         await pdf.download(save_name)
     } catch (error) {
-        await pdf.download("Pilotenplatt")
+        await pdf.download("Pilotenblatt")
     }
 
 }
