@@ -47,7 +47,7 @@ async function createPdf(data) {
         data.length === 1 ? save_name = data[0].temp_contact.first_name + " " + data[0].temp_contact.last_name : save_name = data.length + " Pilotenblätter (" + data[0].temp_tour.title + ")"
         await pdf.download(save_name)
     } catch (error) {
-        await pdf.download("Aufziehn-frei")
+        await pdf.download("Pilotenplatt")
     }
 
 }
@@ -79,10 +79,9 @@ function addDocument(pdf, data) {
     if (tour?.dates_formatted) {
         pdf.addText("(" + tour?.dates_formatted + ")", 12, "center", "normal")
     } else {
-        pdf.addInput("Tour / Termin / Datum", null, table_person[1].cell_x)
+        pdf.addText("Reise: ____________________________________", 12, "center", "normal")
     }
     pdf.setLineGap(10)
-
 
     pdf.setNextLine()
     pdf.addText("1. Pilotendaten:", 12, "left", "bold")
