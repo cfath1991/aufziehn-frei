@@ -51,6 +51,10 @@ async function createPdf(data) {
 function addDocument(pdf, data) {
     console.log("addDocument...", data);
 
+    let tour = data.temp_tour
+    if (!tour) {
+        tour = {}
+    }
     let contact = data.temp_contact
     if (!contact) {
         contact = {}
@@ -64,8 +68,8 @@ function addDocument(pdf, data) {
     pdf.addImage("https://i.ibb.co/nqX7MygR/Aufziehen-frei.jpg", "jpg", pdf.w - 100, 10, 78, 60)
     pdf.addText("Pilotenblatt", 25, "center", "bold")
     if (data.temp_tour) {
-        pdf.addText(data.temp_tour?.title || "", 16, "center", "normal")
-        pdf.addText("(" + data.temp_tour?.dates_formatted + ")", 12, "center", "normal")
+        pdf.addText(tour?.title || "", 16, "center", "normal")
+        pdf.addText("(" + tour?.dates_formatted + ")", 12, "center", "normal")
     }
     pdf.setLineGap(10)
 
