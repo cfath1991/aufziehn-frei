@@ -70,14 +70,19 @@ function addDocument(pdf, data) {
 
     pdf.setLineGap(0)
     pdf.addImage("https://i.ibb.co/nqX7MygR/Aufziehen-frei.jpg", "jpg", pdf.w - 100, 10, 78, 60)
+
+    const table_person = pdf.getTable(["", "", ""])
+
     pdf.addText("Pilotenblatt", 25, "center", "bold")
 
     pdf.addText(tour?.title || "", 16, "center", "normal")
-    pdf.addText("(" + tour?.dates_formatted + ")", 12, "center", "normal")
-
+    if (tour?.dates_formatted) {
+        pdf.addText("(" + tour?.dates_formatted + ")", 12, "center", "normal")
+    } else {
+        pdf.addInput("Tour / Termin / Datum", null, table_person[1].cell_x)
+    }
     pdf.setLineGap(10)
 
-    const table_person = pdf.getTable(["", "", ""])
 
     pdf.setNextLine()
     pdf.addText("1. Pilotendaten:", 12, "left", "bold")
@@ -85,7 +90,7 @@ function addDocument(pdf, data) {
     pdf.addImage(null, null, null, null, 100, 100)
 
     pdf.blockY()
-    pdf.addInput("Name:",( contact.first_name || "") + " " + (contact.last_name || ""), table_person[1].cell_x)
+    pdf.addInput("Name:", (contact.first_name || "") + " " + (contact.last_name || ""), table_person[1].cell_x)
     pdf.addInput("Geburtstag", contact.birthday_formatted, table_person[2].cell_x)
     pdf.releaseY()
 
