@@ -85,19 +85,19 @@ function addDocument(pdf, data) {
     pdf.addImage(null, null, null, null, 100, 100)
 
     pdf.blockY()
-    pdf.addInput("Name:", contact.first_name + " " + contact.last_name, table_person[1].cell_x)
+    pdf.addInput("Name:",( contact.first_name || "") + " " + (contact.last_name || ""), table_person[1].cell_x)
     pdf.addInput("Geburtstag", contact.birthday_formatted, table_person[2].cell_x)
     pdf.releaseY()
 
     pdf.skipLines(2)
     pdf.blockY()
-    pdf.addInput("Straße:", contact.street_formatted, table_person[1].cell_x)
+    pdf.addInput("Straße:", contact.street_formatted || "", table_person[1].cell_x)
     pdf.addInput("Email:", contact.email1, table_person[2].cell_x)
     pdf.releaseY()
 
     pdf.skipLines(2)
     pdf.blockY()
-    pdf.addInput("Postleitzahl / Stadt:", contact.postalcode_formatted + " " + contact.city_formatted, table_person[1].cell_x)
+    pdf.addInput("Postleitzahl / Stadt:", (contact.postalcode_formatted || "") + " " + (contact.city_formatted || ""), table_person[1].cell_x)
     pdf.addInput("Tel.:", contact.phone1, table_person[2].cell_x)
     pdf.releaseY()
 
