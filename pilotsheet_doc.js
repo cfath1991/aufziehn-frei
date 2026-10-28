@@ -43,7 +43,6 @@ async function createPdf(data) {
     }
 
     try {
-
         let save_name = ""
         data.length === 1 ? save_name = data[0].temp_contact.first_name + " " + data[0].temp_contact.last_name : save_name = data.length + " Pilotenblätter (" + data[0].temp_tour.title + ")"
         await pdf.download(save_name)
@@ -72,10 +71,10 @@ function addDocument(pdf, data) {
     pdf.setLineGap(0)
     pdf.addImage("https://i.ibb.co/nqX7MygR/Aufziehen-frei.jpg", "jpg", pdf.w - 100, 10, 78, 60)
     pdf.addText("Pilotenblatt", 25, "center", "bold")
-    if (data.temp_tour) {
-        pdf.addText(tour?.title || "", 16, "center", "normal")
-        pdf.addText("(" + tour?.dates_formatted + ")", 12, "center", "normal")
-    }
+
+    pdf.addText(tour?.title || "", 16, "center", "normal")
+    pdf.addText("(" + tour?.dates_formatted + ")", 12, "center", "normal")
+
     pdf.setLineGap(10)
 
     const table_person = pdf.getTable(["", "", ""])

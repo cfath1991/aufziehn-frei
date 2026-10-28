@@ -208,7 +208,7 @@ class myPDF {
   }
 
   addInput(label, value, x, y, w, fontSize, line_count) {
-    console.log("[myPdfMaker] addInput()");
+    //console.log("[myPdfMaker] addInput()");
     
     const tmp_lg = this.lineGap
     this.lineGap = 1
@@ -261,7 +261,7 @@ class myPDF {
   }
 
   addCheckbox(label, isChecked, x, y, w, h, fontSize) {
-    console.log("addCheckbox...");
+    //console.log("addCheckbox...");
 
     const start_y = this.nextLine
 
