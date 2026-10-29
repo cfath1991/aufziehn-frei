@@ -79,7 +79,7 @@ function createPdf(data) {
 
 
     const table = pdf.getTable(
-        ["Nr","Vorname","Nachname","Geb.","Telefonnr.","Gleitschirm","Flugerfahrung","Sonstiges"],
+        ["Nr","Vorname","Nachname","Geb.","Telefonnr.","Gleitschirm","Flüge","Startgw.","Sonstiges"],
         [pdf.offsets.left, 70, 130, 200, 260, 350, 510, 580]
     )
     console.log("table", table);
@@ -94,6 +94,7 @@ function createPdf(data) {
     pdf.addText(table[5].name, 9, null, "bold", null, null, table[5].cell_x)
     pdf.addText(table[6].name, 9, null, "bold", null, null, table[6].cell_x)
     pdf.addText(table[7].name, 9, null, "bold", null, null, table[7].cell_x)
+    pdf.addText(table[8].name, 9, null, "bold", null, null, table[8].cell_x)
     pdf.releaseY()
     pdf.setNextLine(null, 0.5)
     pdf.addLine()
@@ -111,7 +112,8 @@ function createPdf(data) {
         pdf.addText(person.phone1 || "", 8, null, null, null, null, table[4].cell_x, null, table[4].cell_w * 0.9)
         pdf.addText(sheet?.glider || "", 8, null, null, null, null, table[5].cell_x, null, table[5].cell_w * 0.9)
         pdf.addText((sheet?.total_flights || "") + "\n" + (sheet?.recent_flights || "") + "", 8, null, null, null, null, table[6].cell_x, null, table[6].cell_w * 0.9)
-        pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[7].cell_x, null, table[7].cell_w * 0.9)
+        pdf.addText(sheet?.takeoff_weight || "", 8, null, null, null, null, table[7].cell_x, null, table[7].cell_w * 0.9)
+        pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[8].cell_x, null, table[8].cell_w * 0.9)
         pdf.releaseY()
     }
     //pdf.addNewPage()
