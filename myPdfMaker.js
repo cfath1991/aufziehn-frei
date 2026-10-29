@@ -42,7 +42,9 @@ class myPDF {
   }
 
   restoreCurrentY() {
-    this.nextLine = this.cache.y
+    //this.nextLine = this.cache.y
+    this.setNextLine(this.cache.y)
+
     this.current_y = this.nextLine
     return this.cache.y
   }
@@ -113,7 +115,7 @@ class myPDF {
       return
     }
 
-    this.nextLine += lineHeight * textLines + this.lineGap
+    this.setNextLine(this.nextLine + lineHeight * textLines + this.lineGap)
   }
 
   addLine(xStart, yStart, xEnd, yEnd) {
@@ -153,7 +155,8 @@ class myPDF {
       type: "newPage"
     })
 
-    this.nextLine = this.offsets.top
+    //this.nextLine = this.offsets.top
+    this.setNextLine(this.offsets.top)
     this.current_y = this.offsets.top
   }
 
@@ -209,7 +212,7 @@ class myPDF {
 
   addInput(label, value, x, y, w, fontSize, line_count) {
     //console.log("[myPdfMaker] addInput()");
-    
+
     const tmp_lg = this.lineGap
     this.lineGap = 1
 
@@ -249,7 +252,11 @@ class myPDF {
 
     const offset_y = fontSize + 4
     for (let i = 0; i < line_count; i++) {
-      this.addText(text_arr[i] || "  ", fontSize, "left", null, null, null, x, this.current_y + offset_y)
+      let text_line = text_arr[i]
+      if(line_count > 1 && i === line_count-1 && text_line && text_arr.length > line_count){
+        text_line += " ( . . . )"
+      }
+      this.addText(text_line || "  ", fontSize, "left", null, null, null, x, this.current_y + offset_y)
       this.addLine(x, this.current_y + 4, x + w, this.current_y + 4)
 
     }
@@ -305,7 +312,8 @@ class myPDF {
     //console.log("[releaseY...]");
 
     this.isFixedY = false
-    this.nextLine = this.cache.y
+    //this.nextLine = this.cache.y
+    this.setNextLine(this.cache.y)
     this.cache.linecount = 0
   }
 
@@ -315,10 +323,13 @@ class myPDF {
     }
 
     const value = this.nextLine + ((this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor) * count);
-    this.nextLine = Math.floor(value)
+    //this.nextLine = Math.floor(value)
+
+    this.setNextLine(Math.floor(value))
   }
 
   setNextLine(value, scaleFactor) {
+
     if (value && scaleFactor) {
       console.error("only value or scalefactor can be chosen");
       scaleFactor = 1
@@ -332,7 +343,13 @@ class myPDF {
       value = this.nextLine + (this.jsPdf.getLineHeight() / this.jsPdf.internal.scaleFactor) * scaleFactor;
     }
 
-    this.nextLine = Math.floor(value)
+    //this.nextLine = value
+
+    if(value >= this.h){
+      this.addNewPage()
+    } else {
+      this.nextLine = value
+    }
   }
 
   setLineGap(value) {

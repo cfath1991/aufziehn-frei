@@ -73,17 +73,18 @@ function addDocument(pdf, data) {
 
     const table_person = pdf.getTable(["", "", ""])
 
-    pdf.addText("Pilotenblatt", 25, "center", "bold")
+    pdf.addText("Pilotenblatt", 20, "center", "bold")
 
-    pdf.addText(tour?.title || "", 16, "center", "normal")
+    pdf.addText(tour?.title || "", 12, "center", "normal", null, null, null, 68)
     if (tour?.dates_formatted) {
-        pdf.addText("(" + tour?.dates_formatted + ")", 12, "center", "normal")
+        pdf.addText("(" + tour?.dates_formatted + ")", 8, "center", "normal", null, null, null, 79)
     } else {
-        pdf.addText("Reise: ____________________________________", 12, "center", "normal")
+        pdf.addText("Reise: ____________________________________", 12, "center", "normal", null, null, null, 79)
     }
     pdf.setLineGap(10)
 
-    pdf.setNextLine()
+    
+    //pdf.setNextLine()
     pdf.addText("1. Pilotendaten:", 12, "left", "bold")
 
     pdf.addImage(null, null, null, null, 100, 100)
@@ -109,7 +110,7 @@ function addDocument(pdf, data) {
     pdf.addInput("Land:", contact.city_formatted, table_person[1].cell_x)
 
     pdf.skipLines(2)
-    pdf.addText("2. Ausrüstung:", 12, "left", "bold")
+    pdf.addText("2. Ausrüstung / Ausbildung:", 12, "left", "bold")
 
     const table_sheet = pdf.getTable(["", "", ""])
 
@@ -145,6 +146,14 @@ function addDocument(pdf, data) {
     pdf.addInput("Scheinart:", sheet.licence_type, table_sheet[0].cell_x)
     pdf.addInput("Flüge gesamt (ungefähr):", sheet.total_flights, table_sheet[1].cell_x)
     pdf.addInput("Flüge (letzte 6 Monate):", sheet.recent_flights, table_sheet[2].cell_x)
+    pdf.releaseY()
+
+    pdf.skipLines(2)
+
+    pdf.blockY()
+    pdf.addInput("Ausbildung bei Flugschule:", sheet.flying_school, table_sheet[0].cell_x)
+    pdf.addInput("Sicherheitstrainings (Anzahl):", sheet.amount_siv, table_sheet[1].cell_x)
+    pdf.addInput("Sicherheitstrainings Flugschule:", sheet.siv_school, table_sheet[2].cell_x)
     pdf.releaseY()
 
     pdf.skipLines(5)

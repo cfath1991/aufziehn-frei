@@ -31,7 +31,157 @@ const testData = {
                 phone1: "012301230123"
             },
             temp_pilotsheet: {
+                takeoff_weight: "76kg",
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
 
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname: (Nur zur Erklärung: Flugschein  Flugschein wurde zwar 2011 (?wurde zrung: Flugschein  Flugschein wurde zwar 20rung: Flugschein  Flugschein wurde zwar 20war 2011 (?) Flugschein wurde zwar 2011 (? abs Flugschein wurde zwar 2011 (?olv Flugschein wurde zwar 2011 (?iert (siehe Datumar 2011 (?) absolviert (siehe Datum im Flugschein), im Flugschein), ich bin abaktiv seit 2026 am Fliegen (Auffrischungskurs w"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
+                takeoff_weight: "76kg",
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
+
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname: (Nur zur Erklärung: Flugschein  Flugschein wurde zwar 2011 (?wurde zwar 2011 (?) Flugschein wurde zwar 2011 (? abs Flugschein wurde zwar 2011 (?olv Flugschein wurung: Flugschein  Flugschein wurde zwar 20rung: Flugschein  Flugschein wurde zwar 20rde zwar 2011 (?iert (siehe Datumar 2011 (?) absolviert (siehe Datum im Flugschein), im Flugschein), ich bin abaktiv seit 2026 am Fliegen (Auffrischungskurs w"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
+                takeoff_weight: "76kg",
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
+
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname: (Nur zur Erklärung: Flugschein  Flugschein wurde zwar 2011 (?wurde zwar 2011 (?) Flugschein wurde zwar 2011 (? abs Flugschein wurde zwar 2011 (?olv Flugschein wurde zwar 2011 (?iert (siehe Datumar 2011 (?) absolviert (siehe Datum im Flugschein), im Flugschein), ich bin abaktiv seit 2026 am Fliegen (Auffrischungskurs w"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
+                takeoff_weight: "76kg",
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
+
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname: (Nur zur Erklärung: Flugschein  Flugschein wurde zwar 2011 (?wurde zwar 2011 (?) Flugschein wurde zwar 2011 (? abs Flugschein wurde zwar 2011 (?olv Flugschein wurde zwar 2011 (?iert (siehe Datumar 2011 (?) absolviert (siehe Datum im Flugschein), im Flugschein), ich bin abaktiv seit 2026 am Fliegen (Auffrischungskurs w"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
+                takeoff_weight: "76kg",
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
+
+                glider: "Gleitschirm einer Firma in Grün (CCC)",
+                total_flights: "1000-1500",
+                recent_flights: "50-100",
+                health_info: "Testname: (Nur zur Erklärung: Flugschein  Flugschein wurde zwar 2011 (?wurde zwar 2011 (?) Flugschein wurde zwar 2011 (? abs Flugschein wurde zwar 2011 (?olv Flugschein wurde zwar 2011 (?iert (siehe Datumar 2011 (?) absolviert (siehe Datum im Flugschein), im Flugschein), ich bin abaktiv seit 2026 am Fliegen (Auffrischungskurs w"
+            }
+        },
+        {
+            temp_contact: {
+                first_name: "Testname",
+                last_name: "Test Nachname",
+                birthday_formatted: "01.01.2020",
+                phone1: "012301230123"
+            },
+            temp_pilotsheet: {
+                takeoff_weight: "76kg",
                 glider: "Gleitschirm einer Firma in Grün (CCC)",
                 total_flights: "1000-1500",
                 recent_flights: "50-100",
@@ -79,8 +229,8 @@ function createPdf(data) {
 
 
     const table = pdf.getTable(
-        ["Nr","Vorname","Nachname","Geb.","Telefonnr.","Gleitschirm","Flüge","Startgw.","Sonstiges"],
-        [pdf.offsets.left, 70, 130, 200, 260, 350, 510, 540, 600]
+        ["Nr","Vorname","Nachname","Geb.","Telefonnr.","Gleitschirm","Flüge","Kg","Sonstiges"],
+        [pdf.offsets.left, 70, 130, 200, 260, 350, 510, 570, 600]
     )
     console.log("table", table);
 
@@ -103,6 +253,11 @@ function createPdf(data) {
         const person = data.booked_by[i].temp_contact;
         const sheet = data.booked_by[i].temp_pilotsheet;
 
+        let takeoff_weight = ""
+        if(sheet?.takeoff_weight){
+            takeoff_weight = sheet?.takeoff_weight.replace("kg","") + "kg"
+        }
+
         pdf.setNextLine()
         pdf.blockY()
         pdf.addText((i + 1 )+ "", 8, null, null, null, null, table[0].cell_x, null, table[0].cell_w * 0.9)
@@ -112,7 +267,7 @@ function createPdf(data) {
         pdf.addText(person.phone1 || "", 8, null, null, null, null, table[4].cell_x, null, table[4].cell_w * 0.9)
         pdf.addText(sheet?.glider || "", 8, null, null, null, null, table[5].cell_x, null, table[5].cell_w * 0.9)
         pdf.addText((sheet?.total_flights || "") + "\n" + (sheet?.recent_flights || "") + "", 8, null, null, null, null, table[6].cell_x, null, table[6].cell_w * 0.9)
-        pdf.addText(sheet?.takeoff_weight || "", 8, null, null, null, null, table[7].cell_x, null, table[7].cell_w * 0.9)
+        pdf.addText(takeoff_weight, 8, null, null, null, null, table[7].cell_x, null, table[7].cell_w * 0.9)
         pdf.addText(sheet?.health_info || "", 8, null, null, null, null, table[8].cell_x, null, table[8].cell_w * 0.9)
         pdf.releaseY()
     }
