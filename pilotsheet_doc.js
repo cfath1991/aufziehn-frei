@@ -33,6 +33,10 @@ async function createPdf(data) {
     console.log("[createPdf...]", data);
     textStatus.text = "Erstelle PDF..."
 
+    if(!Array.isArray(data)){
+        console.error("Error: data has to be type of Array!");
+    }
+
     let pdf = new myPDF("a4", "p")
 
     for (let i = 0; i < data.length; i++) {

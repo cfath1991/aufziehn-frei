@@ -16,7 +16,6 @@ const testData = {
                 phone1: "012301230123"
             },
             temp_pilotsheet: {
-
                 glider: "Gleitschirm einer Firma in Grün (CCC)",
                 total_flights: "1000-1500",
                 recent_flights: "50-100",
