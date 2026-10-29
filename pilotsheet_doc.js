@@ -152,7 +152,7 @@ function addDocument(pdf, data) {
 
     pdf.blockY()
     pdf.addInput("Ausbildung bei Flugschule:", sheet.flying_school, table_sheet[0].cell_x)
-    pdf.addInput("Sicherheitstrainings (Anzahl):", sheet.amount_siv, table_sheet[1].cell_x)
+    pdf.addInput("Sicherheitstrainings (Anzahl):", sheet.siv_count, table_sheet[1].cell_x)
     pdf.addInput("Sicherheitstrainings Flugschule:", sheet.siv_school, table_sheet[2].cell_x)
     pdf.releaseY()
 
