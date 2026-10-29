@@ -107,7 +107,7 @@ function addDocument(pdf, data) {
     pdf.releaseY()
 
     pdf.skipLines(2)
-    pdf.addInput("Land:", contact.city_formatted, table_person[1].cell_x)
+    pdf.addInput("Land:", contact.country_formatted, table_person[1].cell_x)
 
     pdf.skipLines(2)
     pdf.addText("2. Ausrüstung / Ausbildung:", 12, "left", "bold")
