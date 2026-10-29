@@ -80,7 +80,7 @@ function createPdf(data) {
 
     const table = pdf.getTable(
         ["Nr","Vorname","Nachname","Geb.","Telefonnr.","Gleitschirm","Flüge","Startgw.","Sonstiges"],
-        [pdf.offsets.left, 70, 130, 200, 260, 350, 510, 580]
+        [pdf.offsets.left, 70, 130, 200, 260, 350, 510, 540, 600]
     )
     console.log("table", table);
 
