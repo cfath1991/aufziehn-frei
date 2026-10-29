@@ -73,7 +73,7 @@ function addDocument(pdf, data) {
 
     const table_person = pdf.getTable(["", "", ""])
 
-    pdf.addText("Pilotenblatt", 20, "center", "bold")
+    pdf.addText("Informationsblatt", 20, "center", "bold")
 
     pdf.addText(tour?.title || "", 12, "center", "normal", null, null, null, 68)
     if (tour?.dates_formatted) {
