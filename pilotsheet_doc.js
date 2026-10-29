@@ -44,7 +44,7 @@ async function createPdf(data) {
 
     try {
         let save_name = ""
-        data.length === 1 ? save_name = data[0].temp_contact.first_name + " " + data[0].temp_contact.last_name : save_name = data.length + " Pilotenblätter (" + data[0].temp_tour.title + ")"
+        data.length === 1 ? save_name = data[0].temp_contact.first_name + " " + data[0].temp_contact.last_name : save_name = data.length + " Infoblätter (" + data[0].temp_tour.title + ")"
         await pdf.download(save_name)
     } catch (error) {
         await pdf.download("Informationsblatt")
