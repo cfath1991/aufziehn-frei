@@ -85,7 +85,7 @@ function addDocument(pdf, data) {
 
     
     //pdf.setNextLine()
-    pdf.addText("1. Pilotendaten:", 12, "left", "bold")
+    pdf.addText("1. Personendaten:", 12, "left", "bold")
 
     pdf.addImage(null, null, null, null, 100, 100)
 
